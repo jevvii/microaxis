@@ -38,6 +38,22 @@ Old HUD/cyber proposals were removed in `e2ee` rework commit; see git history fo
 
 **MicroAxis** = *micro* (atomic detail, sub-50ms care) + *axis* (directional clarity, the line a business scales around). The quote configurator is the brand made tangible: precision you can operate.
 
+### The mark
+
+The name, drawn: *micro* — one small, precisely plotted point; *axis* — the coordinate frame it sits in. The dot rests at the golden-section coordinate of both axes (≈ 0.618). Nothing else.
+
+```
+microaxis/
+├── index.html                        # Hub — includes logo section with local SVG/PNG downloads
+├── preview-1-spec-sheet.html         # Proposal 01 · light · document
+├── preview-2-monolith.html           # Proposal 02 · dark · monochrome · typographic
+├── preview-3-five-questions.html     # Proposal 03 · light · guided 5-step flow
+└── logo/
+    ├── microaxis-mark.svg            # Mark only (ink)
+    ├── microaxis-lockup.svg          # Mark + wordmark (ink)
+    └── microaxis-lockup-inverse.svg  # Mark + wordmark (inverse, for dark surfaces)
+```
+
 ---
 
 ## The three proposals

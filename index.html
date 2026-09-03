@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cline x1='11' y1='53' x2='11' y2='11' stroke='%23151513' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='11' y1='53' x2='55' y2='53' stroke='%23151513' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='38' cy='26' r='5.5' fill='%23151513'/%3E%3C/svg%3E">
 <style>
   :root {
     --paper: #FCFCFA;
@@ -32,7 +33,8 @@
 
   header { border-bottom: 1px solid var(--line); }
   header .wrap { display: flex; justify-content: space-between; align-items: baseline; padding-block: 1.4rem; flex-wrap: wrap; gap: 0.75rem; }
-  .wordmark { font-weight: 600; text-decoration: none; font-size: 1.05rem; }
+  .wordmark { font-weight: 600; text-decoration: none; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.55rem; }
+  .wordmark svg { width: 1.35rem; height: 1.35rem; }
   .wordmark span { color: var(--ink-3); font-weight: 400; }
   header nav a { font-size: 0.85rem; text-decoration: none; color: var(--ink-3); margin-left: 1.25rem; }
   header nav a:hover { color: var(--accent); }
@@ -83,13 +85,38 @@
   }
 
   footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 2.5rem; font-size: 0.8rem; color: var(--ink-3); }
+
+  /* ---------- brand mark ---------- */
+  .brand { padding-block: clamp(3.5rem, 8vw, 6rem); border-bottom: 1px solid var(--line); }
+  .brand h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -0.02em; }
+  .brand > .wrap > p { margin-top: 1rem; color: var(--ink-2); max-width: 56ch; }
+  .brand-cards { display: grid; grid-template-columns: 1.4fr 1fr; border: 1px solid var(--line); margin-top: 2.5rem; }
+  @media (max-width: 46rem) { .brand-cards { grid-template-columns: 1fr; } }
+  .brand-card { padding: clamp(1.5rem, 4vw, 3rem); display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; min-height: 15rem; }
+  .brand-card + .brand-card { border-left: 1px solid var(--line); }
+  @media (max-width: 46rem) { .brand-card + .brand-card { border-left: 0; border-top: 1px solid var(--line); } }
+  .brand-card .meta { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.78rem; color: var(--ink-3); }
+  .brand-card .meta .dl { display: flex; gap: 1rem; }
+  .brand-card .meta .dl button {
+    background: none; border: none; padding: 0; font: inherit; font-family: var(--mono); font-size: 0.75rem;
+    color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line);
+  }
+  .brand-card .meta .dl button:hover { color: var(--accent); }
+  .brand-card.dark { background: #151513; }
+  .brand-card.dark .meta { color: #8a8a83; }
+  .brand-card.dark .meta .dl button { color: #c9c9c1; }
+  .brand-card.dark .meta .dl button:hover { color: #fff; }
+  .brand-card .stage { display: flex; align-items: center; justify-content: center; }
+  .brand-card .stage svg { max-width: 100%; height: auto; }
+  .stage-lockup svg { width: 19rem; }
+  .stage-mark svg { width: 9rem; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <a class="wordmark" href="index.html">MicroAxis <span>— landing page proposals</span></a>
+    <a class="wordmark" href="index.html"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/><line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/><circle cx="38" cy="26" r="5.5" fill="#151513"/></svg>MicroAxis <span>— landing page proposals</span></a>
     <nav>
       <a href="https://github.com/deutzgalila/microaxis" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -153,6 +180,78 @@
     </div>
   </section>
 
+  <section class="brand" id="logo">
+    <div class="wrap">
+      <h2>The brand mark</h2>
+      <p>The name, drawn: <em>micro</em> — one small, precisely plotted point; <em>axis</em> — the coordinate frame it sits in. The dot rests at the golden-section coordinate of both axes (≈ 0.618). Nothing else. Downloads are generated locally, straight from the marks below.</p>
+
+      <div class="brand-cards">
+        <div class="brand-card">
+          <div class="stage stage-lockup">
+            <svg id="logo-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 64" fill="none" role="img" aria-label="MicroAxis logo">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#151513"/>
+              <text x="84" y="44" font-family="IBM Plex Sans, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="36" letter-spacing="-0.6" fill="#151513">MicroAxis</text>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Primary lockup</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-primary" data-name="microaxis-lockup">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-primary" data-name="microaxis-lockup">PNG</button>
+            </span>
+          </div>
+        </div>
+
+        <div class="brand-card">
+          <div class="stage stage-mark">
+            <svg id="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="MicroAxis mark">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#151513"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Mark only</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-mark" data-name="microaxis-mark">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-mark" data-name="microaxis-mark">PNG</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-cards" style="border-top:0">
+        <div class="brand-card dark">
+          <div class="stage stage-lockup">
+            <svg id="logo-inverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 64" fill="none" role="img" aria-label="MicroAxis logo, inverse">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#F4F4EF" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#F4F4EF" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#F4F4EF"/>
+              <text x="84" y="44" font-family="IBM Plex Sans, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="36" letter-spacing="-0.6" fill="#F4F4EF">MicroAxis</text>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Inverse lockup — for dark surfaces</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-inverse" data-name="microaxis-lockup-inverse">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-inverse" data-name="microaxis-lockup-inverse">PNG</button>
+            </span>
+          </div>
+        </div>
+
+        <div class="brand-card">
+          <div class="meta" style="flex-direction:column;align-items:flex-start;gap:0.9rem;justify-content:center">
+            <span style="font-weight:600;color:var(--ink)">Usage, in one breath</span>
+            <span>Keep the mark's clear space equal to the dot's diameter. Never recolor the dot alone, stretch, or add effects. The mark works plain on paper, inverse on ink — nothing in between.</span>
+            <span class="mono" style="font-size:0.72rem">Ink #151513 · Paper #FBFBF9 · Inverse #F4F4EF</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="engine">
     <div class="wrap">
       <h2>The shared quotation engine</h2>
@@ -194,5 +293,75 @@
   </div>
 </footer>
 
+<script>
+/* ---- Logo downloads: serialized from the inline marks above, generated locally ---- */
+(function () {
+  const GEOM = { x1: 11, y1: 53, x2: 11, y2: 11, x3: 55, r: 5.5, dotX: 38, dotY: 26 };
+
+  function saveBlob(blob, filename, btn) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    flashBtn(btn);
+  }
+
+  function flashBtn(btn) {
+    const t = btn.textContent;
+    btn.textContent = 'Saved';
+    setTimeout(() => { btn.textContent = t; }, 1200);
+  }
+
+  function serialize(svg) {
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(svg);
+  }
+
+  // PNG: drawn with canvas primitives + the loaded webfont (SVG-in-image cannot use page fonts).
+  // Draws the exact same geometry as the SVG marks.
+  async function exportPng(srcId, name, btn) {
+    await document.fonts.ready;
+    const svg = document.getElementById(srcId);
+    const vb = svg.viewBox.baseVal;                       // 64x64 or 268x64
+    const isMark = vb.width === 64;
+    const W = isMark ? 1024 : 2048;
+    const s = W / vb.width;
+    const H = Math.round(vb.height * s);
+    const ink = srcId === 'logo-inverse' ? '#F4F4EF' : '#151513';
+
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = ink;
+    ctx.fillStyle = ink;
+    ctx.lineWidth = 3 * s;
+    ctx.beginPath(); ctx.moveTo(GEOM.x1 * s, GEOM.y1 * s); ctx.lineTo(GEOM.x2 * s, GEOM.y2 * s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(GEOM.x1 * s, GEOM.y1 * s); ctx.lineTo(GEOM.x3 * s, GEOM.y1 * s); ctx.stroke();
+    ctx.beginPath(); ctx.arc(GEOM.dotX * s, GEOM.dotY * s, GEOM.r * s, 0, Math.PI * 2); ctx.fill();
+    if (!isMark) {
+      ctx.font = `600 ${36 * s}px "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif`;
+      ctx.textBaseline = 'alphabetic';
+      try { ctx.letterSpacing = `${-0.6 * s}px`; } catch (e) { /* older engines: tracking omitted */ }
+      ctx.fillText('MicroAxis', 84 * s, 44 * s);
+    }
+    c.toBlob(b => b && saveBlob(b, name + '.png', btn), 'image/png');
+  }
+
+  document.querySelectorAll('[data-dl]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const svg = document.getElementById(btn.dataset.src);
+      if (!svg) return;
+      if (btn.dataset.dl === 'svg') {
+        saveBlob(new Blob([serialize(svg)], { type: 'image/svg+xml;charset=utf-8' }), btn.dataset.name + '.svg', btn);
+      } else {
+        exportPng(btn.dataset.src, btn.dataset.name, btn);
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
