@@ -25,10 +25,10 @@
           },
           colors: {
             axis: {
-              950: '#06080d',
-              900: '#0c1017',
-              850: '#111722',
-              800: '#182030',
+              950: '#040609',
+              900: '#090d14',
+              850: '#0e131d',
+              800: '#151c2a',
               cyan: '#00f0ff',
               violet: '#8b5cf6',
               emerald: '#00ff9d',
@@ -40,25 +40,49 @@
   </script>
   <style>
     body {
-      background-color: #06080d;
+      background-color: #040609;
       color: #f1f5f9;
+      overflow-x: hidden;
     }
-    .glass-panel {
-      background: rgba(17, 23, 34, 0.7);
-      backdrop-filter: blur(16px);
+    /* Godly Spotlight Card Hover Effect */
+    .spotlight-panel {
+      position: relative;
+      background: rgba(14, 19, 29, 0.7);
+      backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
     }
-    .glass-panel:hover {
+    .spotlight-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(450px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(0, 240, 255, 0.5), transparent 40%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .spotlight-panel:hover::before {
+      opacity: 1;
+    }
+    .spotlight-panel:hover {
       border-color: rgba(0, 240, 255, 0.3);
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
     }
   </style>
 </head>
 <body class="font-sans antialiased selection:bg-axis-cyan selection:text-black">
 
+  <!-- Godly Film Grain Texture Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.045] mix-blend-screen" style="background-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23noiseFilter)\"/></svg>');"></div>
+
   <!-- Header -->
-  <header class="border-b border-white/10 bg-axis-950/80 backdrop-blur-md sticky top-0 z-50">
+  <header class="border-b border-white/10 bg-axis-950/80 backdrop-blur-md sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-axis-cyan via-axis-violet to-axis-emerald p-[1px]">
@@ -73,6 +97,9 @@
       </div>
 
       <div class="flex items-center gap-3">
+        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30 text-axis-cyan hidden sm:inline">
+          INSPIRED BY GODLY.WEBSITE
+        </span>
         <a href="https://github.com/jevvii/microaxis" target="_blank" class="text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-axis-900">
           <i data-lucide="github" class="w-4 h-4"></i>
           <span>jevvii/microaxis</span>
@@ -85,7 +112,7 @@
   <section class="py-16 px-6 border-b border-white/5 bg-gradient-to-b from-axis-950 via-axis-900 to-axis-950">
     <div class="max-w-4xl mx-auto text-center">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30 text-xs font-mono text-axis-cyan mb-6">
-        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
         THREE DISTINCT ARCHITECTURAL PROPOSALS
       </div>
       <h1 class="text-4xl sm:text-5xl font-display font-bold text-white tracking-tight leading-tight mb-6">
@@ -95,7 +122,7 @@
         </span>
       </h1>
       <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-        Converted from Symph's proven agency service model with custom forms, bespoke interactivity styles, and an interactive <strong>three-tiered quotation system</strong> (Standard, Premium, and Elegant) with automatic add-on detection.
+        Converted from Symph's proven agency service model with custom forms, Godly-inspired micro-interactions (film grain, spotlight borders, 3D card tilts, rolling numerical counters), and an interactive <strong>three-tiered quotation system</strong> (Standard, Premium, and Elegant) with automatic add-on detection.
       </p>
     </div>
   </section>
@@ -108,7 +135,7 @@
     <div class="grid md:grid-cols-3 gap-8">
       
       <!-- Card 1 -->
-      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-cyan/30 bg-axis-900/60 relative group">
+      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-cyan/30 bg-axis-900/60 relative group">
         <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-cyan px-2.5 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30">
           PROPOSAL 01
         </div>
@@ -119,12 +146,12 @@
           <h3 class="text-2xl font-bold text-white mb-2">Precision Grid</h3>
           <div class="text-xs font-mono text-axis-cyan mb-4">Obsidian, Coordinate Planes & Electric Cyan</div>
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            High-tech engineering aesthetic featuring vector coordinate lines, crosshair corners, real-time telemetry HUD, and a multi-step Axis Calibration Wizard with instant tier tabs.
+            High-tech engineering aesthetic featuring vector coordinate lines, crosshair corners, real-time mouse coordinate HUD follower, and a multi-step Axis Calibration Wizard with smooth rolling numerical counters.
           </p>
           <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
             <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Coordinate HUD & Radar Graph</div>
             <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Multi-Step Calibration Wizard</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Inclusions Checklist & Addon Math</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Floating Glass Dock & Toast Alerts</div>
           </div>
         </div>
         <a href="preview-1-precision-grid.html" class="w-full py-3.5 rounded-xl bg-axis-cyan text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-cyan-300 transition shadow-lg shadow-cyan-500/20">
@@ -134,7 +161,7 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-violet/30 bg-axis-900/60 relative group">
+      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-violet/30 bg-axis-900/60 relative group">
         <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-violet px-2.5 py-1 rounded-full bg-axis-violet/10 border border-axis-violet/30">
           PROPOSAL 02
         </div>
@@ -145,12 +172,12 @@
           <h3 class="text-2xl font-bold text-white mb-2">Kinetic Bento</h3>
           <div class="text-xs font-mono text-axis-violet mb-4">Cosmic Violet, Deep Graphite & Frosted Glass</div>
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            Silicon Valley neo-minimalist studio aesthetic inspired by Linear and Stripe. Features interactive scope sliders and a 3-tier side-by-side comparative matrix that updates live.
+            Silicon Valley neo-minimalist studio aesthetic inspired by Linear and Stripe. Features interactive 3D perspective card tilting, scope sliders, and a 3-tier side-by-side comparative matrix updating all prices concurrently.
           </p>
           <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Dynamic Scope & Concurrency Sliders</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> 3D Perspective Card Tilt on Hover</div>
             <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Side-by-Side 3-Tier Comparative Matrix</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Real-Time Addon Total Calculation</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Simultaneous Numerical Rolling Counters</div>
           </div>
         </div>
         <a href="preview-2-kinetic-editorial.html" class="w-full py-3.5 rounded-xl bg-axis-violet text-white font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-purple-600 transition shadow-lg shadow-purple-500/20">
@@ -160,7 +187,7 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-emerald/30 bg-axis-900/60 relative group">
+      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-emerald/30 bg-axis-900/60 relative group">
         <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-emerald px-2.5 py-1 rounded-full bg-axis-emerald/10 border border-axis-emerald/30">
           PROPOSAL 03
         </div>
@@ -171,12 +198,12 @@
           <h3 class="text-2xl font-bold text-white mb-2">Cyber Architect</h3>
           <div class="text-xs font-mono text-axis-emerald mb-4">Carbon Titanium & Matrix Emerald HUD</div>
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            Developer-first cockpit with a split-screen layout. Features a sticky interactive Architect Console with automated system tier recommendations and one-click specification export.
+            Developer-first cockpit with a split-screen layout. Features a sticky interactive Architect Console with automated system tier recommendations and one-click architectural JSON & Markdown spec export.
           </p>
           <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
             <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Split-Screen Interactive Console</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Automated Tier Recommendation AI</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> One-Click Spec Export & Receipt</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Automated Tier Recommendation Engine</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> One-Click JSON Spec Export & Modal</div>
           </div>
         </div>
         <a href="preview-3-cyber-architect.html" class="w-full py-3.5 rounded-xl bg-axis-emerald text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20">
@@ -190,7 +217,7 @@
 
   <!-- Tier Logic & Addon Engine Deep Dive -->
   <section class="py-16 px-6 max-w-5xl mx-auto border-t border-white/5">
-    <div class="glass-panel rounded-3xl p-8 sm:p-12">
+    <div class="spotlight-panel rounded-3xl p-8 sm:p-12">
       <div class="text-xs font-mono text-axis-cyan uppercase tracking-widest mb-3">Architectural Logic Engine</div>
       <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">How the 3-Tiered Quotation Engine Operates</h3>
       
@@ -237,6 +264,16 @@
   </footer>
 
   <script>
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.spotlight-panel').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
     lucide.createIcons();
   </script>
 </body>

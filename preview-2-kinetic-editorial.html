@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MicroAxis — Kinetic Bento Studio & AI Systems</title>
   <meta name="description" content="MicroAxis builds precision AI platforms and software ecosystems. Explore our dynamic tiered architectural estimator." />
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -24,10 +24,10 @@
           },
           colors: {
             brand: {
-              950: '#07080d',
-              900: '#0c0f17',
-              850: '#111522',
-              800: '#171d2e',
+              950: '#06070b',
+              900: '#0b0e16',
+              850: '#101420',
+              800: '#161c2c',
               violet: '#8b5cf6',
               indigo: '#6366f1',
               fuchsia: '#d946ef',
@@ -40,70 +40,89 @@
   </script>
   <style>
     body {
-      background-color: #07080d;
+      background-color: #06070b;
       color: #f1f5f9;
       overflow-x: hidden;
     }
+    /* Godly Spotlight & 3D Perspective Tilt */
     .bento-card {
-      background: rgba(17, 21, 34, 0.65);
-      backdrop-filter: blur(20px);
+      position: relative;
+      background: rgba(16, 20, 32, 0.65);
+      backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease-out;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(450px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(139, 92, 246, 0.6), transparent 40%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .bento-card:hover::before {
+      opacity: 1;
     }
     .bento-card:hover {
       border-color: rgba(139, 92, 246, 0.35);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.15);
+      box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.18);
     }
     .gradient-radial-glow {
-      background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 80%);
+      background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.22) 0%, rgba(99, 102, 241, 0.06) 50%, transparent 80%);
     }
-    .slider-thumb::-webkit-slider-thumb {
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #8b5cf6;
-      border: 2px solid #ffffff;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+    .floating-dock {
+      background: rgba(11, 14, 22, 0.85);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px -5px rgba(139, 92, 246, 0.3);
     }
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #07080d; }
-    ::-webkit-scrollbar-thumb { background: #1e2438; border-radius: 3px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #06070b; }
+    ::-webkit-scrollbar-thumb { background: #1a2133; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
   </style>
 </head>
 <body class="font-sans antialiased relative selection:bg-brand-violet selection:text-white">
 
+  <!-- Godly Film Grain Texture Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.045] mix-blend-screen" style="background-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23noiseFilter)\"/></svg>');"></div>
+
   <!-- Top Prototype Switcher Banner -->
-  <div class="bg-brand-900/90 border-b border-brand-violet/20 text-xs py-2 px-4 sticky top-0 z-50 backdrop-blur-md">
+  <div class="bg-brand-900/90 border-b border-brand-violet/20 text-xs py-2 px-4 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 font-mono text-gray-300">
         <span class="inline-block w-2 h-2 rounded-full bg-brand-violet animate-ping"></span>
         <span class="text-brand-violet font-semibold">DESIGN PREVIEW 2 OF 3:</span>
         <span class="text-white">Kinetic Bento (Cosmic Violet & Titanium Editorial)</span>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-brand-violet/20 border border-brand-violet/40 text-purple-300 hidden sm:inline">GODLY ENHANCED</span>
       </div>
       <div class="flex items-center gap-3">
         <span class="text-gray-400 font-mono text-[11px] hidden sm:inline">Switch Concept:</span>
         <a href="preview-1-precision-grid.html" class="px-2.5 py-1 rounded bg-brand-800 hover:bg-brand-850 text-gray-300 font-mono text-[11px] transition">1. Precision Grid</a>
         <a href="preview-2-kinetic-editorial.html" class="px-2.5 py-1 rounded bg-brand-violet text-white font-mono font-medium text-[11px] shadow-sm">2. Kinetic Bento</a>
         <a href="preview-3-cyber-architect.html" class="px-2.5 py-1 rounded bg-brand-800 hover:bg-brand-850 text-gray-300 font-mono text-[11px] transition">3. Cyber Architect</a>
-        <a href="index.html" class="px-2.5 py-1 rounded border border-white/20 text-white font-mono text-[11px] hover:bg-white/10 transition">All Designs</a>
+        <a href="index.html" class="px-2.5 py-1 rounded border border-white/20 text-white font-mono text-[11px] hover:bg-white/10 transition">Overview</a>
       </div>
     </div>
   </div>
 
-  <!-- Ambient Violet / Indigo Glows -->
+  <!-- Ambient Glows -->
   <div class="fixed inset-0 gradient-radial-glow pointer-events-none z-0"></div>
   <div class="fixed top-20 right-10 w-[500px] h-[500px] bg-brand-violet/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
   <div class="fixed bottom-20 left-10 w-[500px] h-[500px] bg-brand-indigo/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
 
-  <div class="relative z-10">
+  <div class="relative z-10 pb-24">
 
     <!-- Header Navigation -->
-    <header class="border-b border-white/5 bg-brand-950/60 backdrop-blur-xl sticky top-9 z-40">
+    <header class="border-b border-white/5 bg-brand-950/60 backdrop-blur-xl sticky top-9 z-30">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         <!-- Logo -->
@@ -123,7 +142,6 @@
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
           <a href="#offerings" class="hover:text-white transition">Capabilities</a>
           <a href="#showcase" class="hover:text-white transition">Showcase</a>
-          <a href="#manifesto" class="hover:text-white transition">Philosophy</a>
           <a href="#estimator" class="text-brand-violet hover:text-purple-300 font-medium transition flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-brand-violet animate-pulse"></span>
             Tiered Estimator
@@ -187,11 +205,10 @@
           </p>
         </div>
 
-        <!-- Bento Grid Layout -->
+        <!-- Bento Grid Layout with 3D Tilt Cards -->
         <div class="grid md:grid-cols-3 gap-6">
           <!-- Bento 1 (Double Width) -->
-          <div class="md:col-span-2 bento-card rounded-3xl p-8 sm:p-10 relative overflow-hidden group">
-            <div class="absolute top-0 right-0 w-80 h-80 bg-brand-violet/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-brand-violet/20 transition"></div>
+          <div class="md:col-span-2 bento-card tilt-card rounded-3xl p-8 sm:p-10 relative overflow-hidden group">
             <div class="w-12 h-12 rounded-2xl bg-brand-violet/20 flex items-center justify-center text-brand-violet mb-6">
               <i data-lucide="bot" class="w-6 h-6"></i>
             </div>
@@ -214,7 +231,7 @@
           </div>
 
           <!-- Bento 2 (Single Width) -->
-          <div class="bento-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between group">
+          <div class="bento-card tilt-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between group">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-brand-indigo/20 flex items-center justify-center text-brand-indigo mb-6">
                 <i data-lucide="compass" class="w-6 h-6"></i>
@@ -232,7 +249,7 @@
           </div>
 
           <!-- Bento 3 (Single Width) -->
-          <div class="bento-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between group">
+          <div class="bento-card tilt-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between group">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6">
                 <i data-lucide="layout" class="w-6 h-6"></i>
@@ -250,7 +267,7 @@
           </div>
 
           <!-- Bento 4 (Double Width) -->
-          <div class="md:col-span-2 bento-card rounded-3xl p-8 sm:p-10 relative overflow-hidden group">
+          <div class="md:col-span-2 bento-card tilt-card rounded-3xl p-8 sm:p-10 relative overflow-hidden group">
             <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/20 flex items-center justify-center text-fuchsia-400 mb-6">
               <i data-lucide="cpu" class="w-6 h-6"></i>
             </div>
@@ -262,9 +279,9 @@
             <div class="flex flex-wrap gap-2 text-xs font-mono">
               <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">Next.js 15</span>
               <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">TypeScript</span>
-              <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">PostgreSQL / Supabase</span>
+              <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">PostgreSQL</span>
               <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">FastAPI & Python</span>
-              <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">AWS / Cloudflare</span>
+              <span class="px-3 py-1 rounded-full bg-brand-900 border border-white/10 text-gray-300">AWS Edge</span>
             </div>
           </div>
         </div>
@@ -283,8 +300,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <!-- Project 1 -->
-          <div class="bento-card rounded-3xl p-8 flex flex-col justify-between">
+          <div class="bento-card tilt-card rounded-3xl p-8 flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-6">
                 <span class="text-brand-violet font-bold">MILKSHA</span>
@@ -301,8 +317,7 @@
             </div>
           </div>
 
-          <!-- Project 2 -->
-          <div class="bento-card rounded-3xl p-8 flex flex-col justify-between">
+          <div class="bento-card tilt-card rounded-3xl p-8 flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-6">
                 <span class="text-brand-violet font-bold">OCEANJET</span>
@@ -339,7 +354,7 @@
             </span>
           </h2>
           <p class="text-gray-400 mt-4 text-base">
-            Adjust the project scope and select your specialized add-ons below. The interactive engine automatically computes and categorizes your project into <strong>Standard</strong>, <strong>Premium</strong>, and <strong>Elegant</strong> pricing tiers.
+            Adjust the project scope and select your specialized add-ons below. The interactive engine automatically computes and categorizes your project into <strong>Standard</strong>, <strong>Premium</strong>, and <strong>Elegant</strong> pricing tiers with live rolling counters.
           </p>
         </div>
 
@@ -450,11 +465,11 @@
           </div>
         </div>
 
-        <!-- 3-Tier Side-by-Side Comparison Cards -->
+        <!-- 3-Tier Side-by-Side Comparison Cards with Rolling Counters -->
         <div class="grid md:grid-cols-3 gap-8 items-stretch">
           
           <!-- TIER 1: STANDARD -->
-          <div class="bento-card rounded-3xl p-8 flex flex-col justify-between border-white/10">
+          <div class="bento-card tilt-card rounded-3xl p-8 flex flex-col justify-between border-white/10">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <span class="font-mono text-xs font-bold px-3 py-1 rounded-full bg-white/10 text-gray-300">
@@ -503,7 +518,7 @@
           </div>
 
           <!-- TIER 2: PREMIUM (HIGHLIGHTED) -->
-          <div class="bento-card rounded-3xl p-8 flex flex-col justify-between border-brand-violet bg-brand-900/90 relative shadow-2xl shadow-brand-violet/20">
+          <div class="bento-card tilt-card rounded-3xl p-8 flex flex-col justify-between border-brand-violet bg-brand-900/90 relative shadow-2xl shadow-brand-violet/20">
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-violet to-brand-indigo text-white font-mono text-[11px] font-bold shadow-md">
               MOST RECOMMENDED
             </div>
@@ -556,7 +571,7 @@
           </div>
 
           <!-- TIER 3: ELEGANT -->
-          <div class="bento-card rounded-3xl p-8 flex flex-col justify-between border-white/10">
+          <div class="bento-card tilt-card rounded-3xl p-8 flex flex-col justify-between border-white/10">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <span class="font-mono text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">
@@ -629,6 +644,35 @@
 
   </div>
 
+  <!-- Godly Floating Bottom Dock -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+    <div class="floating-dock rounded-full px-4 py-2 flex items-center gap-4 text-xs font-mono">
+      <div class="flex items-center gap-2 border-r border-white/10 pr-3">
+        <span class="w-2 h-2 rounded-full bg-brand-violet animate-pulse"></span>
+        <span class="text-white font-semibold">PREVIEW 2</span>
+      </div>
+      <a href="#estimator" class="text-brand-violet hover:underline flex items-center gap-1">
+        <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+        <span>Estimator</span>
+      </a>
+      <span class="text-gray-600">|</span>
+      <a href="preview-1-precision-grid.html" class="text-gray-400 hover:text-white transition">Design 1</a>
+      <a href="preview-3-cyber-architect.html" class="text-gray-400 hover:text-white transition">Design 3</a>
+      <span class="text-gray-600">|</span>
+      <button onclick="copyCurrentUrl()" class="text-gray-400 hover:text-brand-violet flex items-center gap-1" title="Share Preview">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Godly Toast Pop-up Notification -->
+  <div id="godly-toast" class="fixed top-24 right-6 z-50 transform translate-x-32 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-brand-900/95 border border-brand-violet text-white text-xs font-mono px-4 py-3 rounded-xl shadow-2xl backdrop-blur-xl flex items-center gap-3">
+      <div class="w-2 h-2 rounded-full bg-brand-violet animate-ping"></div>
+      <span id="toast-message">Specification registered.</span>
+    </div>
+  </div>
+
   <!-- Interactive Action Modal -->
   <div id="kinetic-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bento-card bg-brand-900 border border-brand-violet/40 rounded-3xl max-w-lg w-full p-8 relative">
@@ -652,12 +696,66 @@
   <script>
     let kineticAddonTotal = 0;
     let selectedAddonNames = [];
+    let prevPrices = { standard: 18400, premium: 34800, elegant: 64000 };
+
+    // Godly Spotlight & 3D Tilt Interaction
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.bento-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        if (card.classList.contains('tilt-card') && window.innerWidth > 768) {
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+      });
+    });
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      });
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('godly-toast');
+      document.getElementById('toast-message').innerText = message;
+      toast.classList.remove('translate-x-32', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-x-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-x-32', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-x-0', 'opacity-100');
+      }, 3000);
+    }
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      if (!obj) return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentVal = Math.floor(progress * (end - start) + start);
+        obj.innerHTML = `$${currentVal.toLocaleString()}`;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = `$${end.toLocaleString()}`;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
 
     function updateKineticQuote() {
       const modules = parseInt(document.getElementById('modules-slider').value);
       const scale = parseInt(document.getElementById('scale-slider').value);
 
-      // Display labels
       document.getElementById('modules-display').innerText = `${modules} Module${modules === 1 ? '' : 's'} Selected`;
       
       let scaleMultiplier = 1.0;
@@ -671,7 +769,6 @@
       }
       document.getElementById('scale-display').innerText = scaleLabel;
 
-      // Addons
       kineticAddonTotal = 0;
       selectedAddonNames = [];
       const checkboxes = document.querySelectorAll('#kinetic-addons input[type="checkbox"]:checked');
@@ -684,7 +781,6 @@
       document.getElementById('k-addon-count').innerText = `${selectedAddonNames.length} Addon${selectedAddonNames.length === 1 ? '' : 's'} Selected`;
       document.getElementById('k-addons-sum').innerText = `+$${kineticAddonTotal.toLocaleString()}`;
 
-      // Calculate the 3 tiers
       const baseStandard = (12000 + (modules * 2200)) * scaleMultiplier;
       const basePremium = (24000 + (modules * 3200)) * scaleMultiplier;
       const baseElegant = (48000 + (modules * 5000)) * scaleMultiplier;
@@ -693,9 +789,14 @@
       const totalPremium = Math.round(basePremium + kineticAddonTotal);
       const totalElegant = Math.round(baseElegant + kineticAddonTotal);
 
-      document.getElementById('price-standard').innerText = `$${totalStandard.toLocaleString()}`;
-      document.getElementById('price-premium').innerText = `$${totalPremium.toLocaleString()}`;
-      document.getElementById('price-elegant').innerText = `$${totalElegant.toLocaleString()}`;
+      // Roll all three counters simultaneously
+      animateValue('price-standard', prevPrices.standard, totalStandard, 350);
+      animateValue('price-premium', prevPrices.premium, totalPremium, 350);
+      animateValue('price-elegant', prevPrices.elegant, totalElegant, 350);
+
+      prevPrices.standard = totalStandard;
+      prevPrices.premium = totalPremium;
+      prevPrices.elegant = totalElegant;
     }
 
     function bookTier(tierName) {
@@ -723,6 +824,12 @@
       const modal = document.getElementById('kinetic-modal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+    }
+
+    function copyCurrentUrl() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast('Preview link copied to clipboard');
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MicroAxis — Cyber-Architect Studio & Systems Console</title>
   <meta name="description" content="MicroAxis builds hardened autonomous software systems. Live architectural configurator with 3-tiered quotation engine." />
-  <!-- Google Fonts: JetBrains Mono & Space Grotesk -->
+  <!-- Google Fonts: JetBrains Mono & Syne -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
@@ -24,11 +24,11 @@
           },
           colors: {
             cyber: {
-              950: '#070a08',
-              900: '#0b120e',
-              850: '#101a14',
-              800: '#16241c',
-              700: '#1f3529',
+              950: '#050806',
+              900: '#09100c',
+              850: '#0e1812',
+              800: '#14221a',
+              700: '#1b3025',
               emerald: '#00ff9d',
               green: '#10b981',
               neon: '#34d399',
@@ -41,50 +41,82 @@
   </script>
   <style>
     body {
-      background-color: #070a08;
+      background-color: #050806;
       color: #e2e8f0;
       overflow-x: hidden;
     }
+    /* Godly Spotlight on Cyber HUD */
     .hud-border {
+      position: relative;
+      background: rgba(9, 16, 12, 0.7);
+      backdrop-filter: blur(20px);
       border: 1px solid rgba(0, 255, 157, 0.2);
       box-shadow: inset 0 0 15px rgba(0, 255, 157, 0.03);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .hud-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(0, 255, 157, 0.55), transparent 40%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .hud-border:hover::before {
+      opacity: 1;
     }
     .hud-border:hover {
-      border-color: rgba(0, 255, 157, 0.5);
-      box-shadow: 0 0 25px rgba(0, 255, 157, 0.15);
+      border-color: rgba(0, 255, 157, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(0, 255, 157, 0.2);
     }
     .hud-glow {
-      text-shadow: 0 0 10px rgba(0, 255, 157, 0.6);
+      text-shadow: 0 0 12px rgba(0, 255, 157, 0.7);
     }
     .matrix-grid {
       background-size: 30px 30px;
       background-image: 
-        linear-gradient(to right, rgba(0, 255, 157, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(0, 255, 157, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 157, 0.025) 1px, transparent 1px);
+    }
+    .floating-dock {
+      background: rgba(9, 16, 12, 0.85);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(0, 255, 157, 0.25);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px -5px rgba(0, 255, 157, 0.25);
     }
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #070a08; }
-    ::-webkit-scrollbar-thumb { background: #1f3529; }
+    ::-webkit-scrollbar-track { background: #050806; }
+    ::-webkit-scrollbar-thumb { background: #16241c; }
     ::-webkit-scrollbar-thumb:hover { background: #00ff9d; }
   </style>
 </head>
 <body class="font-mono antialiased relative selection:bg-cyber-emerald selection:text-black">
 
+  <!-- Godly Film Grain Texture Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.045] mix-blend-screen" style="background-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23noiseFilter)\"/></svg>');"></div>
+
   <!-- Top Prototype Switcher Banner -->
-  <div class="bg-cyber-900 border-b border-cyber-emerald/30 text-xs py-2 px-4 sticky top-0 z-50 backdrop-blur-md">
+  <div class="bg-cyber-900 border-b border-cyber-emerald/30 text-xs py-2 px-4 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 text-gray-300">
         <span class="inline-block w-2 h-2 bg-cyber-emerald animate-ping"></span>
         <span class="text-cyber-emerald font-bold">DESIGN PREVIEW 3 OF 3:</span>
         <span class="text-white">Cyber Architect (Carbon Titanium & Emerald HUD)</span>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-cyber-emerald/10 border border-cyber-emerald/40 text-cyber-emerald hidden sm:inline">GODLY ENHANCED</span>
       </div>
       <div class="flex items-center gap-3">
         <span class="text-gray-500 text-[11px] hidden sm:inline">Switch Concept:</span>
         <a href="preview-1-precision-grid.html" class="px-2 py-0.5 rounded bg-cyber-850 hover:bg-cyber-800 text-gray-300 text-[11px] transition">1. Precision Grid</a>
         <a href="preview-2-kinetic-editorial.html" class="px-2 py-0.5 rounded bg-cyber-850 hover:bg-cyber-800 text-gray-300 text-[11px] transition">2. Kinetic Bento</a>
         <a href="preview-3-cyber-architect.html" class="px-2 py-0.5 rounded bg-cyber-emerald text-black font-bold text-[11px] shadow-sm">3. Cyber Architect</a>
-        <a href="index.html" class="px-2 py-0.5 rounded border border-white/20 text-white text-[11px] hover:bg-white/10 transition">All Designs</a>
+        <a href="index.html" class="px-2 py-0.5 rounded border border-white/20 text-white text-[11px] hover:bg-white/10 transition">Overview</a>
       </div>
     </div>
   </div>
@@ -92,10 +124,10 @@
   <!-- Background Grid -->
   <div class="fixed inset-0 matrix-grid pointer-events-none opacity-60 z-0"></div>
 
-  <div class="relative z-10">
+  <div class="relative z-10 pb-24">
 
     <!-- Top Command Header -->
-    <header class="border-b border-cyber-emerald/20 bg-cyber-950/80 backdrop-blur-xl sticky top-9 z-40">
+    <header class="border-b border-cyber-emerald/20 bg-cyber-950/80 backdrop-blur-xl sticky top-9 z-30">
       <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
         <!-- Logo -->
@@ -169,7 +201,7 @@
           <div class="space-y-6">
             <div class="text-xs text-cyber-emerald font-bold tracking-widest uppercase">// CORE CAPABILITIES</div>
             
-            <div class="hud-border bg-cyber-900/60 p-6 rounded-lg space-y-3">
+            <div class="hud-border p-6 rounded-lg space-y-3">
               <div class="flex justify-between items-center">
                 <span class="text-cyber-emerald font-bold text-sm">01. AUTONOMOUS AI AGENT MESH</span>
                 <span class="text-[10px] text-gray-500">[MULTI-AGENT]</span>
@@ -179,7 +211,7 @@
               </p>
             </div>
 
-            <div class="hud-border bg-cyber-900/60 p-6 rounded-lg space-y-3">
+            <div class="hud-border p-6 rounded-lg space-y-3">
               <div class="flex justify-between items-center">
                 <span class="text-cyber-emerald font-bold text-sm">02. DISTRIBUTED CLOUD SOFTWARE</span>
                 <span class="text-[10px] text-gray-500">[FULL-STACK]</span>
@@ -189,7 +221,7 @@
               </p>
             </div>
 
-            <div class="hud-border bg-cyber-900/60 p-6 rounded-lg space-y-3">
+            <div class="hud-border p-6 rounded-lg space-y-3">
               <div class="flex justify-between items-center">
                 <span class="text-cyber-emerald font-bold text-sm">03. ARCHITECTURAL AUDIT & MVP SPRINTS</span>
                 <span class="text-[10px] text-gray-500">[14-DAY PROTO]</span>
@@ -205,7 +237,7 @@
             <div class="text-xs text-cyber-emerald font-bold tracking-widest uppercase">// PRODUCTION CASE STUDIES</div>
             
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="hud-border bg-cyber-900/40 p-5 rounded-lg">
+              <div class="hud-border p-5 rounded-lg">
                 <div class="text-[10px] text-cyber-emerald">MILKSHA RETAIL</div>
                 <div class="text-white font-bold text-sm mt-1">Live in 14 Days</div>
                 <p class="text-[11px] text-gray-400 mt-2">
@@ -213,7 +245,7 @@
                 </p>
               </div>
 
-              <div class="hud-border bg-cyber-900/40 p-5 rounded-lg">
+              <div class="hud-border p-5 rounded-lg">
                 <div class="text-[10px] text-cyber-emerald">OCEANJET CARRIER</div>
                 <div class="text-white font-bold text-sm mt-1">1M+ Passengers</div>
                 <p class="text-[11px] text-gray-400 mt-2">
@@ -365,11 +397,18 @@
                 </div>
               </div>
 
-              <!-- Action Button -->
-              <button type="button" onclick="exportConsoleQuote()" class="w-full py-3 bg-cyber-emerald hover:bg-emerald-300 text-black font-bold text-xs rounded transition flex items-center justify-center gap-2">
-                <i data-lucide="file-check" class="w-4 h-4"></i>
-                <span>EXPORT & SCHEDULE ARCHITECT CALL</span>
-              </button>
+              <!-- Action Buttons -->
+              <div class="space-y-2">
+                <button type="button" onclick="exportConsoleQuote()" class="w-full py-3 bg-cyber-emerald hover:bg-emerald-300 text-black font-bold text-xs rounded transition flex items-center justify-center gap-2">
+                  <i data-lucide="file-check" class="w-4 h-4"></i>
+                  <span>EXPORT & SCHEDULE ARCHITECT CALL</span>
+                </button>
+                <button type="button" onclick="copyConsoleSpec()" class="w-full py-2 border border-cyber-emerald/30 hover:border-cyber-emerald text-gray-300 hover:text-cyber-emerald text-xs rounded transition flex items-center justify-center gap-2">
+                  <i data-lucide="copy" class="w-3.5 h-3.5 text-cyber-emerald"></i>
+                  <span>COPY RAW ARCHITECTURAL JSON</span>
+                </button>
+              </div>
+
             </div>
 
           </div>
@@ -384,6 +423,35 @@
       <div class="mt-2 text-gray-600">All systems operating within nominal tolerances. © 2026 MicroAxis.</div>
     </footer>
 
+  </div>
+
+  <!-- Godly Floating Bottom Dock -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+    <div class="floating-dock rounded-full px-4 py-2 flex items-center gap-4 text-xs font-mono">
+      <div class="flex items-center gap-2 border-r border-cyber-emerald/30 pr-3">
+        <span class="w-2 h-2 rounded-full bg-cyber-emerald animate-pulse"></span>
+        <span class="text-white font-semibold">PREVIEW 3</span>
+      </div>
+      <a href="#console" class="text-cyber-emerald hover:underline flex items-center gap-1">
+        <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+        <span>Console</span>
+      </a>
+      <span class="text-gray-600">|</span>
+      <a href="preview-1-precision-grid.html" class="text-gray-400 hover:text-white transition">Design 1</a>
+      <a href="preview-2-kinetic-editorial.html" class="text-gray-400 hover:text-white transition">Design 2</a>
+      <span class="text-gray-600">|</span>
+      <button onclick="copyCurrentUrl()" class="text-gray-400 hover:text-cyber-emerald flex items-center gap-1" title="Share Preview">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Godly Toast Pop-up Notification -->
+  <div id="godly-toast" class="fixed top-24 right-6 z-50 transform translate-x-32 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-cyber-950 border border-cyber-emerald text-white text-xs font-mono px-4 py-3 rounded shadow-2xl backdrop-blur-xl flex items-center gap-3">
+      <div class="w-2 h-2 rounded-full bg-cyber-emerald animate-ping"></div>
+      <span id="toast-message">Telemetry updated.</span>
+    </div>
   </div>
 
   <!-- Export / Confirmation Modal -->
@@ -408,6 +476,7 @@
   <script>
     let currentWorkload = 1.0;
     let activeConsoleTier = 'premium';
+    let lastConsolePrice = 38200;
 
     const consoleTiers = {
       standard: {
@@ -447,6 +516,46 @@
       }
     };
 
+    // Godly Spotlight Tracking Logic
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.hud-border').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('godly-toast');
+      document.getElementById('toast-message').innerText = message;
+      toast.classList.remove('translate-x-32', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-x-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-x-32', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-x-0', 'opacity-100');
+      }, 3000);
+    }
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      if (!obj) return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentVal = Math.floor(progress * (end - start) + start);
+        obj.innerHTML = `$${currentVal.toLocaleString()}`;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = `$${end.toLocaleString()}`;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
     function setWorkloadScale(scale, btn) {
       currentWorkload = scale;
       document.querySelectorAll('.workload-btn').forEach(b => {
@@ -474,7 +583,6 @@
       const select = document.getElementById('c-target');
       const baseCost = parseFloat(select.options[select.selectedIndex].getAttribute('data-base'));
 
-      // Check for addons
       let addonSum = 0;
       let count = 0;
       document.querySelectorAll('#cyber-addons input[type="checkbox"]:checked').forEach(cb => {
@@ -485,7 +593,6 @@
       document.getElementById('c-addon-status').innerText = `${count} module${count === 1 ? '' : 's'}`;
       document.getElementById('c-addon-sum-text').innerText = `+$${addonSum.toLocaleString()}`;
 
-      // Dynamically recommend tier based on selections
       const recBadge = document.getElementById('tier-recommendation-tag');
       if (select.value === 'ai_mesh' || currentWorkload >= 1.85 || count >= 3) {
         recBadge.innerText = 'SYSTEM RECOMMENDS: ELEGANT';
@@ -514,7 +621,10 @@
       const totalPrice = Math.round((baseCost * currentWorkload * tier.multiplier) + addonSum);
 
       document.getElementById('c-tier-label').innerText = tier.name;
-      document.getElementById('c-tier-price').innerText = `$${totalPrice.toLocaleString()}`;
+      
+      animateValue('c-tier-price', lastConsolePrice, totalPrice, 350);
+      lastConsolePrice = totalPrice;
+
       document.getElementById('c-tier-timeline').innerText = tier.timeline;
 
       const incList = document.getElementById('c-inclusions-list');
@@ -543,10 +653,33 @@
       modal.classList.add('flex');
     }
 
+    function copyConsoleSpec() {
+      const price = document.getElementById('c-tier-price').innerText;
+      const select = document.getElementById('c-target');
+      const spec = {
+        agency: "MicroAxis Cyber Systems",
+        target: select.options[select.selectedIndex].text,
+        tier: consoleTiers[activeConsoleTier].name,
+        price: price,
+        workload: `${currentWorkload}x`,
+        inclusions: consoleTiers[activeConsoleTier].inclusions
+      };
+
+      navigator.clipboard.writeText(JSON.stringify(spec, null, 2)).then(() => {
+        showToast('Raw Architectural JSON copied');
+      });
+    }
+
     function closeConsoleModal() {
       const modal = document.getElementById('console-modal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+    }
+
+    function copyCurrentUrl() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast('Preview link copied to clipboard');
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {

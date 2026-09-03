@@ -3,8 +3,8 @@
 <div align="center">
 
 ![MicroAxis Banner](https://img.shields.io/badge/MICROAXIS-PRECISION_SYSTEMS-00f0ff?style=for-the-badge&logoColor=000&labelColor=06080d)
-![Status](https://img.shields.io/badge/KERNEL-v4.2_CALIBRATED-00ff9d?style=for-the-badge&labelColor=06080d)
-![Architecture](https://img.shields.io/badge/ARCHITECTURE-AUTONOMOUS_AI_%2B_WEB-8b5cf6?style=for-the-badge&labelColor=06080d)
+![Status](https://img.shields.io/badge/GODLY_INSPIRED-HIGH_CRAFT-8b5cf6?style=for-the-badge&labelColor=06080d)
+![Architecture](https://img.shields.io/badge/ARCHITECTURE-AUTONOMOUS_AI_%2B_WEB-00ff9d?style=for-the-badge&labelColor=06080d)
 ![License](https://img.shields.io/badge/LICENSE-MIT-white?style=for-the-badge&labelColor=06080d)
 
 <br />
@@ -19,11 +19,28 @@
 
 ## 🎯 Executive Summary & Brand Identity
 
-**MicroAxis** translates the high-impact service model of modern AI engineering agencies (like [Symph.co](https://symph.co)) into a precision-engineered brand identity and interactive platform.
+**MicroAxis** translates the high-impact service model of modern AI engineering agencies (like [Symph.co](https://symph.co)) into a precision-engineered brand identity infused with the visual mastery of [Godly.website](https://godly.website/).
 
 ### Brand Etymology: *Micro* + *Axis*
 * **Micro**: Atomic precision, microservices architecture, sub-50ms latency, zero-bloat code, micro-interactions, and high-frequency deployment cycles.
 * **Axis**: The coordinate plane ($X, Y, Z$) representing directional clarity, trajectory calibration, structural alignment, and the central pivot upon which modern business scales.
+
+---
+
+## ✨ Godly.website Inspirations Implemented Across All 3 Designs
+
+1. **Procedural Film Grain & Tactile Depth**:
+   * Pure SVG fractal noise overlay (`mix-blend-mode: screen; opacity: 0.045`) eliminating flat sterile backgrounds with cinematic grit.
+2. **Dynamic Mouse Spotlight Borders (`--mouse-x`, `--mouse-y`)**:
+   * Cards and HUD panels reactively track cursor coordinates, casting a radial illumination across borders and surfaces.
+3. **Interactive 3D Perspective Card Tilts**:
+   * Realistic gyroscopic card inclination on mouse hover with natural spring recovery.
+4. **Smooth Numerical Rolling Counters (Fintech / Agency Grade)**:
+   * When switching tiers or toggling add-ons, prices fluidly roll and interpolate up or down.
+5. **Floating Island Glass Capsule Dock**:
+   * Persistent bottom floating dock allowing seamless preview switching, quick jumping to the quotation engine, and instant preview link sharing.
+6. **Micro-Interaction Toast Feedback System**:
+   * Non-intrusive, sleek toast popups confirming copied specifications, HUD state toggles, and quote calibrations.
 
 ---
 
@@ -86,16 +103,16 @@ MicroAxis/
 ```
 
 ### 1. [Design 1: Precision Grid](preview-1-precision-grid.html)
-* **Aesthetic**: Obsidian dark background (`#06080d`), coordinate grid lines, crosshair corners, real-time telemetry HUD, electric cyan (`#00f0ff`) accents.
-* **Form & Interactivity Style**: **Multi-Step Axis Calibration Wizard** with step-by-step radar status, real-time live coordinate tickers, and a reactive 3-tier tabbed summary card.
+* **Aesthetic**: Obsidian dark background (`#040609`), coordinate grid lines, crosshair corners, real-time mouse coordinate HUD follower, electric cyan (`#00f0ff`) accents, and spotlight hover glow.
+* **Form & Interactivity Style**: **Multi-Step Axis Calibration Wizard** with step-by-step radar status, real-time live coordinate tickers, rolling numerical counter, and reactive 3-tier tabbed summary card.
 
 ### 2. [Design 2: Kinetic Bento](preview-2-kinetic-editorial.html)
-* **Aesthetic**: Silicon Valley modern editorial glassmorphism (inspired by Linear and Stripe), deep graphite, cosmic violet (`#8b5cf6`), and frosted white cards.
-* **Form & Interactivity Style**: **Kinetic Interactive Sliders** (modules and concurrency volume) paired with a **Side-by-Side 3-Tier Comparative Matrix** showing dynamic prices across all 3 tiers simultaneously.
+* **Aesthetic**: Silicon Valley modern editorial glassmorphism (inspired by Linear and Stripe), deep graphite, cosmic violet (`#8b5cf6`), 3D perspective card tilts, and frosted white cards.
+* **Form & Interactivity Style**: **Kinetic Interactive Sliders** (modules and concurrency volume) paired with a **Side-by-Side 3-Tier Comparative Matrix** showing dynamic prices across all 3 tiers simultaneously with smooth counter interpolation.
 
 ### 3. [Design 3: Cyber Architect](preview-3-cyber-architect.html)
-* **Aesthetic**: Developer cockpit inspired by Raycast, Railway, and Bloomberg terminals. Carbon slate, matrix emerald (`#00ff9d`), amber status flags.
-* **Form & Interactivity Style**: **Split-Screen Interactive Console** featuring deployment target switches, automated system tier recommendations (detecting when scope demands Elegant vs Standard), and one-click architectural proposal export.
+* **Aesthetic**: Developer cockpit inspired by Raycast, Railway, and Bloomberg terminals. Carbon slate, matrix emerald (`#00ff9d`), amber status flags, and spotlight HUD borders.
+* **Form & Interactivity Style**: **Split-Screen Interactive Console** featuring deployment target switches, automated system tier recommendations (detecting when scope demands Elegant vs Standard), and one-click architectural JSON proposal export.
 
 ---
 
@@ -127,11 +144,7 @@ All preview files are completely standalone and require zero build tools, Node s
 
 * **Styling**: Tailwind CSS CDN with custom typography, color tokens, and coordinate grid animations.
 * **Icons**: [Lucide Icons](https://lucide.dev)
-* **Typography**:
-  * *Space Grotesk* (Precision geometry & display)
-  * *JetBrains Mono* (Telemetry & coordinate logs)
-  * *Plus Jakarta Sans* (Kinetic editorial reading)
-  * *Syne* (Cyber terminal display)
+* **Visual Craft**: Inline procedural SVG grain textures, dynamic radial spotlight shaders, 3D perspective tilts.
 * **Interactivity Engine**: Vanilla JavaScript reactive state machine calculating tiered formulas, velocity multipliers, and add-on matrices with zero framework overhead.
 
 ---
