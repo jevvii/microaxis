@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MicroAxis — Spec Sheet (Proposal 1 of 3)</title>
+<meta name="description" content="MicroAxis minimal landing page proposal: the estimate as a self-writing specification sheet. Standard, Premium and Elegant tiers with automatic add-on detection." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFBF9;
+    --ink: #151513;
+    --ink-2: #44443F;
+    --ink-3: #6E6E66;
+    --line: #E4E3DC;
+    --line-2: #CFCFC6;
+    --accent: #1B44D8;      /* drafting blue — interactive elements only */
+    --accent-ink: #FFFFFF;
+    --measure: 62ch;
+    --space: clamp(4.5rem, 9vw, 8rem);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  .wrap { max-width: 72rem; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+  /* ---------- proposal switcher ---------- */
+  .switch {
+    border-bottom: 1px solid var(--line);
+    font-size: 0.75rem; color: var(--ink-3);
+  }
+  .switch .wrap { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.55rem; }
+  .switch nav { display: flex; gap: 1.25rem; }
+  .switch a { text-decoration: none; color: var(--ink-3); }
+  .switch a[aria-current] { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--ink); }
+  .switch a:hover { color: var(--accent); }
+
+  /* ---------- header ---------- */
+  header.site { border-bottom: 1px solid var(--line); }
+  header.site .wrap { display: flex; align-items: baseline; justify-content: space-between; padding-block: 1.4rem; gap: 1rem; flex-wrap: wrap; }
+  .wordmark { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; text-decoration: none; }
+  .wordmark em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+  nav.main { display: flex; gap: 1.75rem; font-size: 0.95rem; }
+  nav.main a { text-decoration: none; color: var(--ink-2); }
+  nav.main a:hover { color: var(--accent); }
+
+  /* ---------- type ---------- */
+  h1, h2 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
+  h1 { font-size: clamp(2.6rem, 6.2vw, 4.9rem); max-width: 14ch; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+  .lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--ink-2); max-width: var(--measure); }
+  .kicker { font-size: 0.8rem; color: var(--ink-3); font-weight: 500; margin-bottom: 1.1rem; }
+
+  section { padding-block: var(--space); border-bottom: 1px solid var(--line); }
+
+  /* ---------- hero ---------- */
+  .hero p.lede { margin-top: 1.75rem; }
+  .hero .actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn {
+    appearance: none; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+    font: inherit; font-weight: 500; font-size: 0.95rem;
+    padding: 0.8rem 1.6rem; cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+  .btn.ghost:hover { border-color: var(--ink); background: transparent; color: var(--ink); }
+  .clients { margin-top: 4.5rem; font-size: 0.85rem; color: var(--ink-3); }
+  .clients strong { color: var(--ink-2); font-weight: 500; }
+
+  /* ---------- services as rows ---------- */
+  .rows { border-top: 1px solid var(--line-2); margin-top: 3rem; }
+  .row {
+    display: grid; grid-template-columns: minmax(0, 22rem) 1fr; gap: 2rem;
+    padding-block: 1.75rem; border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .row h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; }
+  .row p { color: var(--ink-2); max-width: 52ch; }
+  .row .tags { margin-top: 0.65rem; font-size: 0.8rem; color: var(--ink-3); }
+  .row .tags span + span::before { content: " / "; color: var(--line-2); }
+  @media (max-width: 48rem) { .row { grid-template-columns: 1fr; gap: 0.5rem; } }
+
+  /* ---------- work table ---------- */
+  table.work { width: 100%; border-collapse: collapse; margin-top: 3rem; }
+  table.work th { text-align: left; font-weight: 500; font-size: 0.75rem; color: var(--ink-3); padding-bottom: 0.9rem; border-bottom: 1px solid var(--line-2); }
+  table.work td { padding-block: 1.1rem; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+  table.work td:first-child { font-weight: 500; padding-right: 2rem; white-space: nowrap; }
+  table.work td.metric { text-align: right; font-weight: 500; white-space: nowrap; }
+  table.work td.what { color: var(--ink-2); }
+  @media (max-width: 40rem) {
+    table.work th:nth-child(2), table.work td.what { display: none; }
+  }
+
+  blockquote {
+    margin-top: 3rem; max-width: 34ch;
+    font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 500; letter-spacing: -0.015em; line-height: 1.3;
+  }
+  blockquote footer { margin-top: 1.25rem; font-size: 0.85rem; color: var(--ink-3); font-weight: 400; letter-spacing: 0; }
+
+  /* ---------- estimator ---------- */
+  .estimator-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); gap: clamp(2rem, 5vw, 4.5rem); margin-top: 3rem; align-items: start; }
+  @media (max-width: 56rem) { .estimator-grid { grid-template-columns: 1fr; } }
+
+  fieldset { border: 0; margin-bottom: 2.6rem; }
+  legend { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.35rem; }
+  fieldset .hint { font-size: 0.85rem; color: var(--ink-3); margin-bottom: 1.15rem; }
+
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  @media (max-width: 34rem) { .choices { grid-template-columns: 1fr; } }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .choice label {
+    display: block; border: 1px solid var(--line-2); padding: 0.85rem 1rem; cursor: pointer;
+    font-size: 0.9rem; transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+    background: transparent;
+  }
+  .choice label .sub { display: block; color: var(--ink-3); font-size: 0.78rem; margin-top: 0.15rem; }
+  .choice input:checked + label { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .choice input:checked + label .sub { color: #B9B9B0; }
+  .choice input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .choice label:hover { border-color: var(--ink); }
+
+  .range-row { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 1px; background: var(--line-2); cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 1.05rem; height: 1.05rem; background: var(--paper);
+    border: 1.5px solid var(--ink); border-radius: 50%;
+  }
+  input[type="range"]::-moz-range-thumb { width: 1.05rem; height: 1.05rem; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 50%; }
+  input[type="range"]:focus-visible { outline: none; }
+  input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .range-value { min-width: 11ch; text-align: right; font-size: 0.9rem; }
+
+  .addon-row { display: flex; justify-content: space-between; gap: 1rem; border: 1px solid var(--line-2); padding: 0.8rem 1rem; cursor: pointer; font-size: 0.9rem; position: relative; transition: border-color 120ms ease; }
+  .addon-row + .addon-row { border-top: 0; }
+  .addon-row:hover { border-color: var(--ink); z-index: 1; }
+  .addon-row input { position: absolute; opacity: 0; }
+  .addon-row .price { color: var(--ink-3); }
+  .addon-row .tick { display: inline-block; width: 0.85rem; height: 0.85rem; border: 1px solid var(--line-2); margin-right: 0.7rem; vertical-align: -0.12rem; }
+  .addon-row.checked { border-color: var(--ink); z-index: 1; }
+  .addon-row.checked .tick { background: var(--ink); border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--paper); }
+  .addon-row:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- the spec sheet ---------- */
+  .sheet { position: sticky; top: 1.5rem; border: 1px solid var(--line-2); background: #FFFFFF; }
+  .sheet-head { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--line-2); }
+  .sheet-head b { font-weight: 600; font-size: 0.95rem; }
+  .sheet-head span { font-size: 0.72rem; color: var(--ink-3); }
+  .sheet-body { padding: 1.1rem 1.4rem 1.4rem; }
+  .line-item { display: flex; align-items: baseline; gap: 0.75rem; padding-block: 0.42rem; font-size: 0.88rem; color: var(--ink-2); }
+  .line-item .dots { flex: 1; border-bottom: 1px dotted var(--line-2); transform: translateY(-0.2rem); }
+  .line-item .amt { color: var(--ink); }
+  .line-item.addon { color: var(--ink-2); }
+  .line-item.addon .name::before { content: "+ "; }
+  .sheet-sub { display: flex; justify-content: space-between; padding-top: 0.75rem; margin-top: 0.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--ink-3); }
+  .sheet-total { padding: 1.1rem 1.4rem 1.3rem; border-top: 1px solid var(--line-2); }
+  .sheet-total .lbl { font-size: 0.78rem; color: var(--ink-3); display: flex; justify-content: space-between; align-items: baseline; }
+  .sheet-total .num { font-size: 2.1rem; font-weight: 500; margin-top: 0.2rem; letter-spacing: -0.01em; }
+  .sheet-total .band { font-size: 0.8rem; color: var(--ink-3); }
+
+  .tiers { border-top: 1px solid var(--line-2); }
+  .tier-row { display: grid; grid-template-columns: 1fr auto; column-gap: 0.9rem; row-gap: 0.1rem; align-items: baseline; padding: 0.75rem 1.4rem; border-bottom: 1px solid var(--line); font-size: 0.85rem; }
+  .tier-row:last-child { border-bottom: 0; }
+  .tier-name { font-weight: 500; grid-column: 1; grid-row: 1; }
+  .tier-desc { color: var(--ink-3); font-size: 0.78rem; grid-column: 1; grid-row: 2; }
+  .tier-band { font-size: 0.82rem; color: var(--ink-2); grid-column: 2; grid-row: 1; text-align: right; white-space: nowrap; }
+  .tier-weeks { font-size: 0.78rem; color: var(--ink-3); grid-column: 2; grid-row: 2; text-align: right; white-space: nowrap; }
+  .tier-row.rec { background: #F5F5EF; }
+  .tier-row.rec .tier-name::after {
+    content: "recommended"; font-size: 0.68rem; color: var(--accent); border: 1px solid var(--accent);
+    padding: 0.08rem 0.45rem; margin-left: 0.55rem; vertical-align: 0.12rem; border-radius: 999px; white-space: nowrap;
+  }
+  .inclusions { padding: 1rem 1.4rem 1.3rem; border-top: 1px solid var(--line); }
+  .inclusions h4 { font-size: 0.78rem; font-weight: 500; color: var(--ink-3); margin-bottom: 0.6rem; }
+  .inclusions ul { list-style: none; font-size: 0.85rem; color: var(--ink-2); }
+  .inclusions li { padding-block: 0.28rem; padding-left: 1.1rem; position: relative; }
+  .inclusions li::before { content: "—"; position: absolute; left: 0; color: var(--line-2); }
+  .inclusions li.inherited { color: var(--ink-3); }
+
+  .sheet-foot { padding: 1.1rem 1.4rem 1.4rem; border-top: 1px solid var(--line-2); }
+  .sheet-foot .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.8rem; }
+  @media (max-width: 30rem) { .sheet-foot .fields { grid-template-columns: 1fr; } }
+  .sheet-foot input[type="text"], .sheet-foot input[type="email"] {
+    font: inherit; font-size: 0.88rem; border: 1px solid var(--line-2); background: transparent;
+    padding: 0.65rem 0.85rem; color: var(--ink); width: 100%;
+  }
+  .sheet-foot input::placeholder { color: var(--ink-3); }
+  .sheet-foot input:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+  .sheet-foot .btn { width: 100%; text-align: center; }
+  .sheet-foot .note { font-size: 0.72rem; color: var(--ink-3); margin-top: 0.7rem; line-height: 1.5; }
+
+  footer.site { padding-block: 2.5rem; }
+  footer.site .wrap { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--ink-3); }
+  footer.site nav { display: flex; gap: 1.5rem; }
+  footer.site a { text-decoration: none; color: var(--ink-2); }
+  footer.site a:hover { color: var(--accent); }
+
+  .flash { animation: flash 480ms ease; }
+  @keyframes flash { 0% { color: var(--accent); } 100% { } }
+</style>
+</head>
+<body>
+
+<div class="switch">
+  <div class="wrap">
+    <span>MicroAxis proposals — 1 of 3, <b style="color:var(--ink)">Spec&nbsp;Sheet</b></span>
+    <nav>
+      <a href="preview-1-spec-sheet.html" aria-current="true">1 Spec Sheet</a>
+      <a href="preview-2-monolith.html">2 Monolith</a>
+      <a href="preview-3-five-questions.html">3 Five Questions</a>
+      <a href="index.html">Hub</a>
+    </nav>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#top">MicroAxis <em>— precision software studio</em></a>
+    <nav class="main">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#work">Work</a>
+      <a href="#estimate">Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Software built to the millimeter.</h1>
+      <p class="lede">MicroAxis is a small engineering studio. We design and build AI agents, web platforms, and mobile systems — and we put a transparent, line-item price on your idea before the first call.</p>
+      <div class="actions">
+        <a class="btn" href="#estimate">Get a line-item estimate</a>
+        <a class="btn ghost" href="#work">See delivered work</a>
+      </div>
+      <p class="clients">Systems delivered for <strong>DBM</strong>, <strong>M&nbsp;Lhuillier</strong>, <strong>BPI</strong>, <strong>OceanJet</strong>, <strong>Milksha</strong> and 500&nbsp;Startups-backed teams.</p>
+    </div>
+  </section>
+
+  <!-- ================= CAPABILITIES ================= -->
+  <section id="capabilities">
+    <div class="wrap">
+      <p class="kicker">Capabilities</p>
+      <h2>Three practices. One standard of precision.</h2>
+      <div class="rows">
+        <div class="row">
+          <h3>AI &amp; technology advisory</h3>
+          <div>
+            <p>Architecture audits, feasibility studies, and a working prototype in fourteen days. You leave knowing exactly what to build and what it costs.</p>
+            <div class="tags"><span>Strategy</span><span>Feasibility</span><span>MVP sprints</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Custom AI agents</h3>
+          <div>
+            <p>Autonomous agents on your private data — retrieval pipelines, deterministic guardrails, tool-calling — deployed inside your operation, not as a demo.</p>
+            <div class="tags"><span>Vector RAG</span><span>Orchestration</span><span>Guardrails</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Custom software</h3>
+          <div>
+            <p>Web platforms, mobile applications, and business systems built on Next.js, Go, and PostgreSQL. Engineered to hold up at a million requests a day.</p>
+            <div class="tags"><span>Web</span><span>Mobile</span><span>Internal systems</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section id="work">
+    <div class="wrap">
+      <p class="kicker">Delivered work</p>
+      <h2>A short list of things that run.</h2>
+      <table class="work">
+        <thead><tr><th>Client</th><th>What we built</th><th style="text-align:right">Outcome</th></tr></thead>
+        <tbody>
+          <tr><td>Milksha</td><td class="what">Multi-branch ordering platform with live kitchen routing</td><td class="metric mono">Live in 14 days</td></tr>
+          <tr><td>OceanJet</td><td class="what">Ticketing, dispatch, and fleet management engine</td><td class="metric mono">1M+ passengers</td></tr>
+          <tr><td>Dept. of Budget &amp; Mgmt</td><td class="what">National financial transparency portal</td><td class="metric mono">100M+ records</td></tr>
+          <tr><td>Flying Tigers Express</td><td class="what">Fleet dispatch and AI route optimization</td><td class="metric mono">0 → live infra</td></tr>
+        </tbody>
+      </table>
+      <blockquote>
+        “They delivered exactly what we had in mind from sprint one — and found ways to make the architecture radically more efficient.”
+        <footer>Jhoana Rull, Office of the CIO, DBM</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ================= ESTIMATE ================= -->
+  <section id="estimate">
+    <div class="wrap">
+      <p class="kicker">Estimate</p>
+      <h2>Answer on the left.<br>Watch the specification write itself.</h2>
+      <p class="lede" style="margin-top:1.25rem">Five inputs. The sheet on the right prices your build across three tiers — <strong>Standard</strong>, <strong>Premium</strong>, <strong>Elegant</strong> — and itemizes every add-on you select. No email required to see the numbers.</p>
+
+      <div class="estimator-grid">
+        <form id="spec-form" autocomplete="off">
+
+          <fieldset>
+            <legend>What are you building?</legend>
+            <p class="hint">Sets the base of the estimate.</p>
+            <div class="choices" id="f-product"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>How much of it?</legend>
+            <p class="hint">Count the core modules — auth, dashboard, billing, admin each count as one.</p>
+            <div class="range-row">
+              <input type="range" id="f-modules" min="1" max="10" step="1" value="4" aria-label="Number of core modules">
+              <output class="range-value mono" id="f-modules-out" for="f-modules">4 modules</output>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Who shows up on day one?</legend>
+            <p class="hint">Expected concurrent users at launch.</p>
+            <div class="choices" id="f-scale" style="grid-template-columns:repeat(2,1fr)"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>How fast do you need it?</legend>
+            <p class="hint">Compressed timelines carry a small premium.</p>
+            <div class="choices" id="f-timeline" style="grid-template-columns:repeat(3,1fr)"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Any specialised modules?</legend>
+            <p class="hint">Add-ons are detected and itemised on the sheet.</p>
+            <div id="f-addons"></div>
+          </fieldset>
+
+        </form>
+
+        <!-- The sheet -->
+        <aside class="sheet" aria-live="polite">
+          <div class="sheet-head">
+            <b>Specification</b>
+            <span class="mono" id="sheet-ref">REF μA-2026-0001</span>
+          </div>
+          <div class="sheet-body">
+            <div id="sheet-lines"></div>
+            <div class="sheet-sub"><span>Add-ons</span><span class="mono" id="sheet-addons-sum">$0</span></div>
+          </div>
+          <div class="sheet-total">
+            <div class="lbl"><span>Estimated total</span><span id="sheet-weeks">6–8 weeks</span></div>
+            <div class="num mono" id="sheet-total">$38,400</div>
+            <div class="band">Falls in the <b id="sheet-band-label">Premium</b> band of <span class="mono" id="sheet-band">$32k–48k</span></div>
+          </div>
+
+          <div class="tiers" id="tier-rows"></div>
+
+          <div class="inclusions">
+            <h4>In scope at the recommended tier</h4>
+            <ul id="inclusion-list"></ul>
+          </div>
+
+          <div class="sheet-foot">
+            <div class="fields">
+              <input type="text" id="f-name" placeholder="Your name" aria-label="Your name">
+              <input type="email" id="f-email" placeholder="Work email" aria-label="Work email">
+            </div>
+            <button type="button" class="btn" id="btn-send">Request this build</button>
+            <p class="note" id="send-note">Sends the specification with your details. We reply within 24 hours — the numbers above are the quote.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 MicroAxis. <span class="mono">14.5995° N, 120.9842° E</span></span>
+    <nav>
+      <a href="preview-2-monolith.html">Next proposal — Monolith</a>
+      <a href="index.html">All proposals</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   MicroAxis shared quotation engine — Spec Sheet presentation
+   Same model across all three proposals.
+   ============================================================ */
+const PRODUCTS = {
+  web:    { name: 'Web platform',       base: 16000, weight: 0, sub: 'Portals, dashboards, commerce' },
+  mobile: { name: 'Mobile application', base: 18000, weight: 1, sub: 'iOS & Android, one codebase' },
+  agents: { name: 'AI agent system',    base: 24000, weight: 2, sub: 'Autonomous workflows' },
+  saas:   { name: 'Enterprise SaaS',    base: 28000, weight: 3, sub: 'Multi-tenant, at scale' },
+};
+const SCALE = [
+  { id: 's1', label: 'Up to 1k',  idx: 0 },
+  { id: 's2', label: '10k',       idx: 1 },
+  { id: 's3', label: '100k',      idx: 2 },
+  { id: 's4', label: '1M+',       idx: 3 },
+];
+const TIMELINES = [
+  { id: 'relaxed',     label: 'Relaxed',     mult: 0.95, sub: 'flexible start' },
+  { id: 'standard',    label: 'Standard',    mult: 1.0,  sub: 'soonest available' },
+  { id: 'accelerated', label: 'Accelerated', mult: 1.15, sub: 'priority squad' },
+];
+const ADDONS = [
+  { id: 'rag',  name: 'Vector RAG & semantic search', price: 5500, desc: 'embeddings, hybrid reranking' },
+  { id: 'soc2', name: 'SOC2 & HIPAA hardening',       price: 4500, desc: 'pen-tests, audit logging' },
+  { id: '3d',   name: '3D kinetics & micro-motion',   price: 3800, desc: 'WebGL, fluid interaction' },
+  { id: 'sre',  name: '24/7 dedicated SRE & SLA',     price: 4200, desc: '15-min incident response' },
+];
+const TIERS = {
+  standard: { label: 'Standard', desc: 'Core launchpad',      band: [16000, 24000],  factor: 1.0, weeks: '3–4 weeks',
+    incl: ['Full-stack responsive platform','Auth, roles & PostgreSQL','Automated CI/CD','Core SEO & Web Vitals','14-day launch warranty'] },
+  premium:  { label: 'Premium',  desc: 'Accelerated scale',   band: [32000, 48000],  factor: 1.6, weeks: '6–8 weeks',
+    incl: ['Everything in Standard','Atomic design system','AI copilot / workflow sync','Redis caching & edge routing','30-day dedicated SRE'] },
+  elegant:  { label: 'Elegant',  desc: 'Sovereign engine',    band: [65000, 110000], factor: 2.6, weeks: '10–14 weeks',
+    incl: ['Everything in Premium','Multi-agent autonomous swarm','3D WebGL micro-interactions','Multi-region failover · 99.999%','Principal tech lead + 24/7 SLA'] },
+};
+const TIER_ORDER = ['standard', 'premium', 'elegant'];
+const money = n => '$' + n.toLocaleString('en-US');
+const bandFmt = b => '$' + (b[0]/1000) + 'k–' + (b[1]/1000) + 'k';
+const round50 = n => Math.round(n / 50) * 50;
+
+const state = { product: 'web', modules: 4, scale: 1, timeline: 'standard', addons: new Set() };
+
+/* ---------- engine ---------- */
+function compute() {
+  const p = PRODUCTS[state.product];
+  const score = p.weight + Math.ceil(state.modules / 3) + state.scale;
+  const recKey = score <= 2 ? 'standard' : score <= 6 ? 'premium' : 'elegant';
+  const tl = TIMELINES.find(t => t.id === state.timeline);
+  const addonSum = ADDONS.filter(a => state.addons.has(a.id)).reduce((s, a) => s + a.price, 0);
+
+  const perTier = {};
+  for (const k of TIER_ORDER) {
+    const t = TIERS[k];
+    const base = t.band[0] + (state.modules - 1) * 800 * t.factor + state.scale * 1500 * t.factor;
+    // exact line-item sum on standard timelines; rounding shown as its own line only when a timeline multiplier applies
+    perTier[k] = (tl.mult === 1 ? Math.max(base, t.band[0]) : round50(Math.max(base, t.band[0]) * tl.mult)) + addonSum;
+  }
+  return { p, score, recKey, tl, addonSum, perTier };
+}
+
+/* ---------- control builders ---------- */
+function buildRadios(elId, name, items, getLabel, getSub, onPick, checkedFn) {
+  const host = document.getElementById(elId);
+  host.innerHTML = '';
+  items.forEach(it => {
+    const id = `${name}-${it.id}`;
+    const wrap = document.createElement('div');
+    wrap.className = 'choice';
+    wrap.innerHTML = `<input type="radio" name="${name}" id="${id}"><label for="${id}">${getLabel(it)}<span class="sub">${getSub(it)}</span></label>`;
+    const input = wrap.querySelector('input');
+    input.checked = checkedFn(it);
+    input.addEventListener('change', () => { onPick(it); render(); });
+    host.appendChild(wrap);
+  });
+}
+
+buildRadios('f-product', 'product', Object.entries(PRODUCTS).map(([id, v]) => ({ id, ...v })),
+  it => it.name, it => it.sub, it => state.product = it.id, it => it.id === state.product);
+
+buildRadios('f-scale', 'scale', SCALE,
+  it => it.label, it => 'concurrent users', it => state.scale = it.idx, it => it.idx === state.scale);
+
+buildRadios('f-timeline', 'timeline', TIMELINES,
+  it => it.label, it => it.sub, it => state.timeline = it.id, it => it.id === state.timeline);
+
+const addonsHost = document.getElementById('f-addons');
+ADDONS.forEach(a => {
+  const row = document.createElement('label');
+  row.className = 'addon-row';
+  row.innerHTML = `<input type="checkbox" id="addon-${a.id}">
+    <span><span class="tick" aria-hidden="true"></span>${a.name} <span style="color:var(--ink-3);font-size:.8rem">— ${a.desc}</span></span>
+    <span class="price mono">${money(a.price)}</span>`;
+  row.querySelector('input').addEventListener('change', e => {
+    e.target.checked ? state.addons.add(a.id) : state.addons.delete(a.id);
+    row.classList.toggle('checked', e.target.checked);
+    render(true);
+  });
+  addonsHost.appendChild(row);
+});
+
+const modulesInput = document.getElementById('f-modules');
+modulesInput.addEventListener('input', () => {
+  state.modules = +modulesInput.value;
+  document.getElementById('f-modules-out').textContent = `${state.modules} module${state.modules > 1 ? 's' : ''}`;
+  render();
+});
+document.getElementById('f-modules-out').textContent = '4 modules';
+
+/* ---------- render ---------- */
+function flash(el) {
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+}
+
+function render(fromAddons) {
+  const r = compute();
+  const p = r.p;
+
+  const t = TIERS[r.recKey];
+  const scopeAmt = (state.modules - 1) * 800 * t.factor;
+  const scaleAmt = state.scale * 1500 * t.factor;
+  const rawBase = t.band[0] + scopeAmt + scaleAmt;
+  const tlDelta = r.perTier[r.recKey] - r.addonSum - rawBase;   // timeline + rounding adjustment
+  const signed = v => (v < 0 ? '−$' : '+$') + Math.abs(v).toLocaleString('en-US');
+
+  const lines = [
+    [`Base — ${p.name}, ${t.label.toLowerCase()} floor`, t.band[0]],
+    [`Scope — ${state.modules} module${state.modules > 1 ? 's' : ''}`, scopeAmt],
+    [`Scale — ${SCALE[state.scale].label} concurrent`, scaleAmt],
+  ];
+  if (tlDelta !== 0) lines.push([`Timeline — ${r.tl.label.toLowerCase()} (×${r.tl.mult})`, signed(tlDelta)]);
+
+  const host = document.getElementById('sheet-lines');
+  host.innerHTML = '';
+  lines.forEach(([name, amt]) => {
+    const div = document.createElement('div');
+    div.className = 'line-item';
+    const shown = amt === 0 ? 'incl.' : (typeof amt === 'number' ? money(amt) : amt);
+    div.innerHTML = `<span class="name">${name}</span><span class="dots"></span><span class="amt mono">${shown}</span>`;
+    host.appendChild(div);
+  });
+  ADDONS.filter(a => state.addons.has(a.id)).forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'line-item addon';
+    div.innerHTML = `<span class="name"> ${a.name}</span><span class="dots"></span><span class="amt mono">${money(a.price)}</span>`;
+    host.appendChild(div);
+  });
+
+  const sumEl = document.getElementById('sheet-addons-sum');
+  sumEl.textContent = state.addons.size ? '+' + money(r.addonSum) : '$0';
+  if (fromAddons) flash(sumEl);
+
+  const totalEl = document.getElementById('sheet-total');
+  const next = money(r.perTier[r.recKey]);
+  if (totalEl.textContent !== next) { totalEl.textContent = next; flash(totalEl); }
+  document.getElementById('sheet-weeks').textContent = TIERS[r.recKey].weeks;
+  document.getElementById('sheet-band-label').textContent = TIERS[r.recKey].label;
+  document.getElementById('sheet-band').textContent = bandFmt(TIERS[r.recKey].band);
+
+  const tiersHost = document.getElementById('tier-rows');
+  tiersHost.innerHTML = '';
+  TIER_ORDER.forEach(k => {
+    const t = TIERS[k];
+    const row = document.createElement('div');
+    row.className = 'tier-row' + (k === r.recKey ? ' rec' : '');
+    row.innerHTML = `<span class="tier-name">${t.label}</span>
+      <span class="tier-band mono">${bandFmt(t.band)}</span>
+      <span class="tier-desc">${t.desc}</span>
+      <span class="tier-weeks mono">${t.weeks}</span>`;
+    tiersHost.appendChild(row);
+  });
+
+  const inclHost = document.getElementById('inclusion-list');
+  inclHost.innerHTML = '';
+  TIERS[r.recKey].incl.forEach((txt, i) => {
+    const li = document.createElement('li');
+    li.textContent = txt;
+    if (txt.startsWith('Everything')) li.classList.add('inherited');
+    inclHost.appendChild(li);
+  });
+}
+
+document.getElementById('btn-send').addEventListener('click', () => {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const note = document.getElementById('send-note');
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    note.textContent = 'Add your name and a valid work email so we know where to send the confirmation.';
+    note.style.color = 'var(--accent)';
+    return;
+  }
+  note.style.color = 'var(--ink-3)';
+  note.innerHTML = `Noted, ${name}. Specification <b>#μA-2026-0001</b> is reserved for ${email} — we reply within 24 hours.`;
+  document.getElementById('btn-send').textContent = 'Specification requested';
+});
+
+render();
+</script>
+</body>
+</html>

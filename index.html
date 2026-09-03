@@ -1,280 +1,367 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MicroAxis — Precision AI & Software Engineering | Design Proposals</title>
-  <meta name="description" content="MicroAxis Landing Page Design Proposals & Interactive Tiered Quotation Engine." />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-            display: ['Space Grotesk', 'sans-serif'],
-          },
-          colors: {
-            axis: {
-              950: '#040609',
-              900: '#090d14',
-              850: '#0e131d',
-              800: '#151c2a',
-              cyan: '#00f0ff',
-              violet: '#8b5cf6',
-              emerald: '#00ff9d',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body {
-      background-color: #040609;
-      color: #f1f5f9;
-      overflow-x: hidden;
-    }
-    /* Godly Spotlight Card Hover Effect */
-    .spotlight-panel {
-      position: relative;
-      background: rgba(14, 19, 29, 0.7);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-    }
-    .spotlight-panel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.5px;
-      background: radial-gradient(450px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(0, 240, 255, 0.5), transparent 40%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .spotlight-panel:hover::before {
-      opacity: 1;
-    }
-    .spotlight-panel:hover {
-      border-color: rgba(0, 240, 255, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MicroAxis — Landing Page Proposals</title>
+<meta name="description" content="Three minimal design proposals for the MicroAxis landing page, each with a working tiered quotation engine (Standard, Premium, Elegant) and add-on detection." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cline x1='11' y1='53' x2='11' y2='11' stroke='%23151513' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='11' y1='53' x2='55' y2='53' stroke='%23151513' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='38' cy='26' r='5.5' fill='%23151513'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --paper: #FCFCFA;
+    --ink: #151513;
+    --ink-2: #3E3E3A;
+    --ink-3: #71716A;
+    --line: #E5E4DD;
+    --accent: #1B44D8;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 1rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: var(--mono); }
+  .wrap { max-width: 60rem; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; justify-content: space-between; align-items: baseline; padding-block: 1.4rem; flex-wrap: wrap; gap: 0.75rem; }
+  .wordmark { font-weight: 600; text-decoration: none; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.55rem; }
+  .wordmark svg { width: 1.35rem; height: 1.35rem; }
+  .wordmark span { color: var(--ink-3); font-weight: 400; }
+  header nav a { font-size: 0.85rem; text-decoration: none; color: var(--ink-3); margin-left: 1.25rem; }
+  header nav a:hover { color: var(--accent); }
+
+  .intro { padding-block: clamp(3.5rem, 8vw, 6.5rem); border-bottom: 1px solid var(--line); }
+  h1 { font-size: clamp(2.2rem, 5.5vw, 3.9rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.06; max-width: 17ch; text-wrap: balance; }
+  .intro p { margin-top: 1.5rem; max-width: 56ch; color: var(--ink-2); font-size: 1.05rem; }
+  .intro .note { margin-top: 2.5rem; font-size: 0.82rem; color: var(--ink-3); max-width: 56ch; }
+
+  .proposals { border-bottom: 1px solid var(--line); }
+  .proposal {
+    display: grid; grid-template-columns: 3rem 1fr auto; gap: clamp(1rem, 4vw, 2.5rem); align-items: baseline;
+    padding-block: 2.2rem; border-bottom: 1px solid var(--line); text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .proposal:last-child { border-bottom: 0; }
+  .proposal:hover { background: #F6F6F1; }
+  .proposal .num { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-3); }
+  .proposal h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 600; letter-spacing: -0.02em; }
+  .proposal h2 small { font-weight: 400; font-size: 0.85rem; color: var(--ink-3); letter-spacing: 0; margin-left: 0.6rem; }
+  .proposal p { color: var(--ink-2); font-size: 0.92rem; margin-top: 0.5rem; max-width: 52ch; }
+  .proposal .spec { display: flex; gap: 0.45rem; margin-top: 0.9rem; align-items: center; flex-wrap: wrap; }
+  .proposal .chip { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); border: 1px solid var(--line); padding: 0.18rem 0.55rem; border-radius: 999px; }
+  .proposal .swatches { display: flex; gap: 0.3rem; }
+  .proposal .swatches i { width: 0.9rem; height: 0.9rem; border-radius: 50%; border: 1px solid var(--line); display: block; }
+  .proposal .open { font-size: 0.85rem; font-weight: 500; color: var(--accent); white-space: nowrap; }
+  @media (max-width: 40rem) {
+    .proposal { grid-template-columns: 1fr; gap: 0.6rem; }
+    .proposal .open { justify-self: start; }
+  }
+
+  .engine { padding-block: clamp(3.5rem, 8vw, 6rem); border-bottom: 1px solid var(--line); }
+  .engine h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -0.02em; max-width: 22ch; }
+  .engine > .wrap > p { margin-top: 1.1rem; color: var(--ink-2); max-width: 56ch; }
+  table.tiers { width: 100%; border-collapse: collapse; margin-top: 2.5rem; font-size: 0.9rem; }
+  table.tiers th { text-align: left; font-weight: 600; padding: 0.9rem 1rem 0.9rem 0; border-bottom: 1px solid var(--ink); font-size: 0.95rem; }
+  table.tiers td { padding: 0.9rem 1rem 0.9rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: top; }
+  table.tiers td:first-child { color: var(--ink); font-weight: 500; }
+  table.tiers .band { font-family: var(--mono); font-size: 0.82rem; white-space: nowrap; }
+  table.tiers ul { list-style: none; }
+  table.tiers li { padding-block: 0.15rem; }
+  table.tiers li.inherited { color: var(--ink-3); }
+  @media (max-width: 46rem) {
+    table.tiers, table.tiers tbody, table.tiers tr, table.tiers td, table.tiers th { display: block; }
+    table.tiers thead { display: none; }
+    table.tiers tr { border-bottom: 1px solid var(--line); padding-block: 0.9rem; }
+    table.tiers td { border: 0; padding: 0.15rem 0; }
+  }
+
+  footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 2.5rem; font-size: 0.8rem; color: var(--ink-3); }
+
+  /* ---------- brand mark ---------- */
+  .brand { padding-block: clamp(3.5rem, 8vw, 6rem); border-bottom: 1px solid var(--line); }
+  .brand h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -0.02em; }
+  .brand > .wrap > p { margin-top: 1rem; color: var(--ink-2); max-width: 56ch; }
+  .brand-cards { display: grid; grid-template-columns: 1.4fr 1fr; border: 1px solid var(--line); margin-top: 2.5rem; }
+  @media (max-width: 46rem) { .brand-cards { grid-template-columns: 1fr; } }
+  .brand-card { padding: clamp(1.5rem, 4vw, 3rem); display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; min-height: 15rem; }
+  .brand-card + .brand-card { border-left: 1px solid var(--line); }
+  @media (max-width: 46rem) { .brand-card + .brand-card { border-left: 0; border-top: 1px solid var(--line); } }
+  .brand-card .meta { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.78rem; color: var(--ink-3); }
+  .brand-card .meta .dl { display: flex; gap: 1rem; }
+  .brand-card .meta .dl button {
+    background: none; border: none; padding: 0; font: inherit; font-family: var(--mono); font-size: 0.75rem;
+    color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line);
+  }
+  .brand-card .meta .dl button:hover { color: var(--accent); }
+  .brand-card.dark { background: #151513; }
+  .brand-card.dark .meta { color: #8a8a83; }
+  .brand-card.dark .meta .dl button { color: #c9c9c1; }
+  .brand-card.dark .meta .dl button:hover { color: #fff; }
+  .brand-card .stage { display: flex; align-items: center; justify-content: center; }
+  .brand-card .stage svg { max-width: 100%; height: auto; }
+  .stage-lockup svg { width: 19rem; }
+  .stage-mark svg { width: 9rem; }
+</style>
 </head>
-<body class="font-sans antialiased selection:bg-axis-cyan selection:text-black">
+<body>
 
-  <!-- Godly Film Grain Texture Overlay -->
-  <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.045] mix-blend-screen" style="background-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23noiseFilter)\"/></svg>');"></div>
+<header>
+  <div class="wrap">
+    <a class="wordmark" href="index.html"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/><line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/><circle cx="38" cy="26" r="5.5" fill="#151513"/></svg>MicroAxis <span>— landing page proposals</span></a>
+    <nav>
+      <a href="https://github.com/deutzgalila/microaxis" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- Header -->
-  <header class="border-b border-white/10 bg-axis-950/80 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-axis-cyan via-axis-violet to-axis-emerald p-[1px]">
-          <div class="w-full h-full bg-axis-950 rounded-[11px] flex items-center justify-center font-display font-bold text-white text-base">
-            μA
-          </div>
-        </div>
-        <div>
-          <span class="font-display font-extrabold text-xl tracking-wider text-white">MICRO<span class="text-axis-cyan">AXIS</span></span>
-          <span class="text-[10px] font-mono text-gray-400 block tracking-widest uppercase">Landing Page Proposals & Quotation Engine</span>
-        </div>
-      </div>
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <h1>Three quiet designs for a precise studio.</h1>
+      <p>Each proposal below is a complete, standalone landing page for MicroAxis — a precision software studio ("micro": atomic detail; "axis": directional clarity). All three share one quotation engine that reads a visitor's answers, prices the build across <strong>Standard</strong>, <strong>Premium</strong>, and <strong>Elegant</strong> tiers, and detects specialised add-ons. What changes between them is the visual language and the way the form behaves.</p>
+      <p class="note">Direction: contemporary minimalism — type-led, generous margins, two or three colors, motion only in response to the visitor. The estimate is presented as a banded range plus an itemised figure, per current pricing-UX research.</p>
+    </div>
+  </section>
 
-      <div class="flex items-center gap-3">
-        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30 text-axis-cyan hidden sm:inline">
-          INSPIRED BY GODLY.WEBSITE
+  <section class="proposals">
+    <div class="wrap">
+
+      <a class="proposal" href="preview-1-spec-sheet.html">
+        <span class="num">01</span>
+        <span>
+          <h2>Spec Sheet <small>light · document</small></h2>
+          <p>The page is a ledger and the estimate is a document that writes itself: line items with dot leaders, running subtotal, add-ons appearing as rows, the recommended tier stamped on the sheet.</p>
+          <span class="spec">
+            <span class="swatches"><i style="background:#FBFBF9"></i><i style="background:#151513"></i><i style="background:#1B44D8"></i></span>
+            <span class="chip">IBM Plex Sans + Mono</span>
+            <span class="chip">single-page form</span>
+          </span>
         </span>
-        <a href="https://github.com/jevvii/microaxis" target="_blank" class="text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-axis-900">
-          <i data-lucide="github" class="w-4 h-4"></i>
-          <span>jevvii/microaxis</span>
-        </a>
-      </div>
-    </div>
-  </header>
+        <span class="open">Open proposal</span>
+      </a>
 
-  <!-- Hero Summary -->
-  <section class="py-16 px-6 border-b border-white/5 bg-gradient-to-b from-axis-950 via-axis-900 to-axis-950">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30 text-xs font-mono text-axis-cyan mb-6">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-        THREE DISTINCT ARCHITECTURAL PROPOSALS
-      </div>
-      <h1 class="text-4xl sm:text-5xl font-display font-bold text-white tracking-tight leading-tight mb-6">
-        Precision AI & Software Engineering.<br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-axis-cyan via-axis-violet to-axis-emerald">
-          Derived from the name MicroAxis.
+      <a class="proposal" href="preview-2-monolith.html">
+        <span class="num">02</span>
+        <span>
+          <h2>Monolith <small>dark · monochrome · typographic</small></h2>
+          <p>Pure black, white, and grey — no chromatic accent at all. Every selected state inverts. The price is the largest object on the page, held in a sticky panel while inputs reconfigure it live.</p>
+          <span class="spec">
+            <span class="swatches"><i style="background:#0A0A0A"></i><i style="background:#2E2E2E"></i><i style="background:#F5F5F5"></i></span>
+            <span class="chip">Archivo variable, one family</span>
+            <span class="chip">sticky live estimate</span>
+          </span>
         </span>
-      </h1>
-      <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-        Converted from Symph's proven agency service model with custom forms, Godly-inspired micro-interactions (film grain, spotlight borders, 3D card tilts, rolling numerical counters), and an interactive <strong>three-tiered quotation system</strong> (Standard, Premium, and Elegant) with automatic add-on detection.
-      </p>
-    </div>
-  </section>
+        <span class="open">Open proposal</span>
+      </a>
 
-  <!-- 3 Design Showcase Cards -->
-  <section class="py-20 px-6 max-w-7xl mx-auto">
-    <div class="text-xs font-mono text-axis-cyan tracking-widest uppercase mb-4 text-center">// SELECT A DESIGN PROPOSAL TO LAUNCH STANDALONE PREVIEW</div>
-    <h2 class="text-3xl font-bold text-white text-center mb-16">Explore the 3 Visual & Interactivity Archetypes</h2>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      
-      <!-- Card 1 -->
-      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-cyan/30 bg-axis-900/60 relative group">
-        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-cyan px-2.5 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30">
-          PROPOSAL 01
-        </div>
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-axis-cyan/10 border border-axis-cyan/40 flex items-center justify-center text-axis-cyan mb-6 group-hover:scale-110 transition">
-            <i data-lucide="crosshair" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Precision Grid</h3>
-          <div class="text-xs font-mono text-axis-cyan mb-4">Obsidian, Coordinate Planes & Electric Cyan</div>
-          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            High-tech engineering aesthetic featuring vector coordinate lines, crosshair corners, real-time mouse coordinate HUD follower, and a multi-step Axis Calibration Wizard with smooth rolling numerical counters.
-          </p>
-          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Coordinate HUD & Radar Graph</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Multi-Step Calibration Wizard</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Floating Glass Dock & Toast Alerts</div>
-          </div>
-        </div>
-        <a href="preview-1-precision-grid.html" class="w-full py-3.5 rounded-xl bg-axis-cyan text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-cyan-300 transition shadow-lg shadow-cyan-500/20">
-          <span>Launch Precision Grid Preview</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-violet/30 bg-axis-900/60 relative group">
-        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-violet px-2.5 py-1 rounded-full bg-axis-violet/10 border border-axis-violet/30">
-          PROPOSAL 02
-        </div>
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-axis-violet/10 border border-axis-violet/40 flex items-center justify-center text-axis-violet mb-6 group-hover:scale-110 transition">
-            <i data-lucide="sparkles" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Kinetic Bento</h3>
-          <div class="text-xs font-mono text-axis-violet mb-4">Cosmic Violet, Deep Graphite & Frosted Glass</div>
-          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            Silicon Valley neo-minimalist studio aesthetic inspired by Linear and Stripe. Features interactive 3D perspective card tilting, scope sliders, and a 3-tier side-by-side comparative matrix updating all prices concurrently.
-          </p>
-          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> 3D Perspective Card Tilt on Hover</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Side-by-Side 3-Tier Comparative Matrix</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Simultaneous Numerical Rolling Counters</div>
-          </div>
-        </div>
-        <a href="preview-2-kinetic-editorial.html" class="w-full py-3.5 rounded-xl bg-axis-violet text-white font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-purple-600 transition shadow-lg shadow-purple-500/20">
-          <span>Launch Kinetic Bento Preview</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="spotlight-panel rounded-3xl p-8 flex flex-col justify-between border-axis-emerald/30 bg-axis-900/60 relative group">
-        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-emerald px-2.5 py-1 rounded-full bg-axis-emerald/10 border border-axis-emerald/30">
-          PROPOSAL 03
-        </div>
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-axis-emerald/10 border border-axis-emerald/40 flex items-center justify-center text-axis-emerald mb-6 group-hover:scale-110 transition">
-            <i data-lucide="terminal" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Cyber Architect</h3>
-          <div class="text-xs font-mono text-axis-emerald mb-4">Carbon Titanium & Matrix Emerald HUD</div>
-          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-            Developer-first cockpit with a split-screen layout. Features a sticky interactive Architect Console with automated system tier recommendations and one-click architectural JSON & Markdown spec export.
-          </p>
-          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Split-Screen Interactive Console</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Automated Tier Recommendation Engine</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> One-Click JSON Spec Export & Modal</div>
-          </div>
-        </div>
-        <a href="preview-3-cyber-architect.html" class="w-full py-3.5 rounded-xl bg-axis-emerald text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20">
-          <span>Launch Cyber Architect Preview</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
+      <a class="proposal" href="preview-3-five-questions.html">
+        <span class="num">03</span>
+        <span>
+          <h2>Five Questions <small>light · guided flow</small></h2>
+          <p>The whole pitch is the flow: one question at a time, auto-advance, a thin progress line, contact details collected last — then a reveal screen with the tier recommendation and every add-on itemised.</p>
+          <span class="spec">
+            <span class="swatches"><i style="background:#FFFFFF"></i><i style="background:#131310"></i><i style="background:#0C7A43"></i></span>
+            <span class="chip">Instrument Sans + Serif</span>
+            <span class="chip">5-step guided flow</span>
+          </span>
+        </span>
+        <span class="open">Open proposal</span>
+      </a>
 
     </div>
   </section>
 
-  <!-- Tier Logic & Addon Engine Deep Dive -->
-  <section class="py-16 px-6 max-w-5xl mx-auto border-t border-white/5">
-    <div class="spotlight-panel rounded-3xl p-8 sm:p-12">
-      <div class="text-xs font-mono text-axis-cyan uppercase tracking-widest mb-3">Architectural Logic Engine</div>
-      <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">How the 3-Tiered Quotation Engine Operates</h3>
-      
-      <div class="grid sm:grid-cols-3 gap-6 text-xs font-mono">
-        <div class="p-4 rounded-xl bg-axis-950 border border-white/10">
-          <div class="text-white font-bold text-sm mb-1 text-gray-300">1. STANDARD TIER</div>
-          <div class="text-axis-cyan mb-2">Core Launchpad ($16k - $24k)</div>
-          <p class="text-gray-400 leading-relaxed">
-            Essential production build. High-velocity Next.js/React stack, PostgreSQL DB, secure auth, automated CI/CD pipeline, and 14-day warranty.
-          </p>
+  <section class="brand" id="logo">
+    <div class="wrap">
+      <h2>The brand mark</h2>
+      <p>The name, drawn: <em>micro</em> — one small, precisely plotted point; <em>axis</em> — the coordinate frame it sits in. The dot rests at the golden-section coordinate of both axes (≈ 0.618). Nothing else. Downloads are generated locally, straight from the marks below.</p>
+
+      <div class="brand-cards">
+        <div class="brand-card">
+          <div class="stage stage-lockup">
+            <svg id="logo-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 64" fill="none" role="img" aria-label="MicroAxis logo">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#151513"/>
+              <text x="84" y="44" font-family="IBM Plex Sans, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="36" letter-spacing="-0.6" fill="#151513">MicroAxis</text>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Primary lockup</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-primary" data-name="microaxis-lockup">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-primary" data-name="microaxis-lockup">PNG</button>
+            </span>
+          </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-axis-950 border border-axis-cyan/40">
-          <div class="text-white font-bold text-sm mb-1 text-axis-cyan">2. PREMIUM TIER</div>
-          <div class="text-axis-cyan mb-2">Scale & Velocity ($32k - $48k)</div>
-          <p class="text-gray-400 leading-relaxed">
-            Full bespoke Atomic Design System, Redis caching, AI assistant workflows, 85%+ test coverage, and 30-day dedicated post-launch SRE warranty.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-axis-950 border border-white/10">
-          <div class="text-white font-bold text-sm mb-1 text-purple-300">3. ELEGANT TIER</div>
-          <div class="text-purple-400 mb-2">Sovereign Flagship ($65k - $110k+)</div>
-          <p class="text-gray-400 leading-relaxed">
-            White-glove multi-agent autonomous swarm, custom 3D WebGL micro-interactions, multi-region failover, penetration hardening, and dedicated 24/7 SLA.
-          </p>
+        <div class="brand-card">
+          <div class="stage stage-mark">
+            <svg id="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="MicroAxis mark">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#151513" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#151513"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Mark only</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-mark" data-name="microaxis-mark">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-mark" data-name="microaxis-mark">PNG</button>
+            </span>
+          </div>
         </div>
       </div>
 
-      <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
-        <div>
-          <span class="text-axis-cyan font-bold">Addons Identified:</span> Vector RAG ($5.5k), SOC2 Hardening ($4.5k), 3D Kinetics ($3.8k), 24/7 SRE ($4.2k)
+      <div class="brand-cards" style="border-top:0">
+        <div class="brand-card dark">
+          <div class="stage stage-lockup">
+            <svg id="logo-inverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 64" fill="none" role="img" aria-label="MicroAxis logo, inverse">
+              <line x1="11" y1="53" x2="11" y2="11" stroke="#F4F4EF" stroke-width="3" stroke-linecap="round"/>
+              <line x1="11" y1="53" x2="55" y2="53" stroke="#F4F4EF" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="38" cy="26" r="5.5" fill="#F4F4EF"/>
+              <text x="84" y="44" font-family="IBM Plex Sans, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="36" letter-spacing="-0.6" fill="#F4F4EF">MicroAxis</text>
+            </svg>
+          </div>
+          <div class="meta">
+            <span>Inverse lockup — for dark surfaces</span>
+            <span class="dl">
+              <button type="button" data-dl="svg" data-src="logo-inverse" data-name="microaxis-lockup-inverse">SVG</button>
+              <button type="button" data-dl="png" data-src="logo-inverse" data-name="microaxis-lockup-inverse">PNG</button>
+            </span>
+          </div>
         </div>
-        <div class="text-gray-500">
-          Git: <code class="text-white">git@github.com:jevvii/microaxis.git</code>
+
+        <div class="brand-card">
+          <div class="meta" style="flex-direction:column;align-items:flex-start;gap:0.9rem;justify-content:center">
+            <span style="font-weight:600;color:var(--ink)">Usage, in one breath</span>
+            <span>Keep the mark's clear space equal to the dot's diameter. Never recolor the dot alone, stretch, or add effects. The mark works plain on paper, inverse on ink — nothing in between.</span>
+            <span class="mono" style="font-size:0.72rem">Ink #151513 · Paper #FBFBF9 · Inverse #F4F4EF</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-12 px-6 border-t border-white/10 bg-axis-950 text-center text-xs font-mono text-gray-500">
-    MicroAxis Inc. // Autonomous Systems & Software Architecture © 2026
-  </footer>
+  <section class="engine">
+    <div class="wrap">
+      <h2>The shared quotation engine</h2>
+      <p>Five inputs — product type, scope, launch scale, timeline, specialised add-ons — produce a complexity score. The score selects a recommended tier; the estimate is computed inside that tier's band and itemised on screen. Band ranges are fixed for trust; the computed figure is explained line by line.</p>
+      <table class="tiers">
+        <thead>
+          <tr><th>Tier</th><th>Band</th><th>Timeline</th><th>Inclusions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standard<span style="display:block;font-weight:400;font-size:.78rem;color:var(--ink-3)">Core launchpad</span></td>
+            <td class="band">$16k–24k</td>
+            <td>3–4 weeks</td>
+            <td><ul><li>Full-stack responsive platform</li><li>Auth, roles &amp; PostgreSQL</li><li>Automated CI/CD</li><li>Core SEO &amp; Web Vitals</li><li>14-day launch warranty</li></ul></td>
+          </tr>
+          <tr>
+            <td>Premium<span style="display:block;font-weight:400;font-size:.78rem;color:var(--ink-3)">Accelerated scale</span></td>
+            <td class="band">$32k–48k</td>
+            <td>6–8 weeks</td>
+            <td><ul><li class="inherited">Everything in Standard</li><li>Atomic design system</li><li>AI copilot / workflow sync</li><li>Redis caching &amp; edge routing</li><li>30-day dedicated SRE</li></ul></td>
+          </tr>
+          <tr>
+            <td>Elegant<span style="display:block;font-weight:400;font-size:.78rem;color:var(--ink-3)">Sovereign engine</span></td>
+            <td class="band">$65k–110k</td>
+            <td>10–14 weeks</td>
+            <td><ul><li class="inherited">Everything in Premium</li><li>Multi-agent autonomous swarm</li><li>3D WebGL micro-interactions</li><li>Multi-region failover · 99.999%</li><li>Principal tech lead + 24/7 SLA</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:1.75rem;font-size:0.85rem;color:var(--ink-3)">Detectable add-ons, itemised separately in every proposal: Vector RAG &amp; semantic search <span class="mono">+$5,500</span> · SOC2 &amp; HIPAA hardening <span class="mono">+$4,500</span> · 3D kinetics <span class="mono">+$3,800</span> · 24/7 SRE &amp; SLA <span class="mono">+$4,200</span></p>
+    </div>
+  </section>
+</main>
 
-  <script>
-    document.addEventListener('mousemove', (e) => {
-      document.querySelectorAll('.spotlight-panel').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
+<footer>
+  <div class="wrap">
+    <span>© 2026 MicroAxis. All systems nominal. <span class="mono">14.5995° N, 120.9842° E</span></span>
+    <span>Service model adapted from Symph; design and copy are our own.</span>
+  </div>
+</footer>
+
+<script>
+/* ---- Logo downloads: serialized from the inline marks above, generated locally ---- */
+(function () {
+  const GEOM = { x1: 11, y1: 53, x2: 11, y2: 11, x3: 55, r: 5.5, dotX: 38, dotY: 26 };
+
+  function saveBlob(blob, filename, btn) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    flashBtn(btn);
+  }
+
+  function flashBtn(btn) {
+    const t = btn.textContent;
+    btn.textContent = 'Saved';
+    setTimeout(() => { btn.textContent = t; }, 1200);
+  }
+
+  function serialize(svg) {
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(svg);
+  }
+
+  // PNG: drawn with canvas primitives + the loaded webfont (SVG-in-image cannot use page fonts).
+  // Draws the exact same geometry as the SVG marks.
+  async function exportPng(srcId, name, btn) {
+    await document.fonts.ready;
+    const svg = document.getElementById(srcId);
+    const vb = svg.viewBox.baseVal;                       // 64x64 or 268x64
+    const isMark = vb.width === 64;
+    const W = isMark ? 1024 : 2048;
+    const s = W / vb.width;
+    const H = Math.round(vb.height * s);
+    const ink = srcId === 'logo-inverse' ? '#F4F4EF' : '#151513';
+
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = ink;
+    ctx.fillStyle = ink;
+    ctx.lineWidth = 3 * s;
+    ctx.beginPath(); ctx.moveTo(GEOM.x1 * s, GEOM.y1 * s); ctx.lineTo(GEOM.x2 * s, GEOM.y2 * s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(GEOM.x1 * s, GEOM.y1 * s); ctx.lineTo(GEOM.x3 * s, GEOM.y1 * s); ctx.stroke();
+    ctx.beginPath(); ctx.arc(GEOM.dotX * s, GEOM.dotY * s, GEOM.r * s, 0, Math.PI * 2); ctx.fill();
+    if (!isMark) {
+      ctx.font = `600 ${36 * s}px "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif`;
+      ctx.textBaseline = 'alphabetic';
+      try { ctx.letterSpacing = `${-0.6 * s}px`; } catch (e) { /* older engines: tracking omitted */ }
+      ctx.fillText('MicroAxis', 84 * s, 44 * s);
+    }
+    c.toBlob(b => b && saveBlob(b, name + '.png', btn), 'image/png');
+  }
+
+  document.querySelectorAll('[data-dl]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const svg = document.getElementById(btn.dataset.src);
+      if (!svg) return;
+      if (btn.dataset.dl === 'svg') {
+        saveBlob(new Blob([serialize(svg)], { type: 'image/svg+xml;charset=utf-8' }), btn.dataset.name + '.svg', btn);
+      } else {
+        exportPng(btn.dataset.src, btn.dataset.name, btn);
+      }
     });
-
-    lucide.createIcons();
-  </script>
+  });
+})();
+</script>
 </body>
 </html>

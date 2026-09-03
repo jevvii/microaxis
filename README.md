@@ -1,159 +1,122 @@
-# MicroAxis (μA) — Precision AI & Software Engineering Studio
+# MicroAxis — Landing Page Proposals & Tiered Quotation Engine
 
 <div align="center">
 
-![MicroAxis Banner](https://img.shields.io/badge/MICROAXIS-PRECISION_SYSTEMS-00f0ff?style=for-the-badge&logoColor=000&labelColor=06080d)
-![Status](https://img.shields.io/badge/GODLY_INSPIRED-HIGH_CRAFT-8b5cf6?style=for-the-badge&labelColor=06080d)
-![Architecture](https://img.shields.io/badge/ARCHITECTURE-AUTONOMOUS_AI_%2B_WEB-00ff9d?style=for-the-badge&labelColor=06080d)
-![License](https://img.shields.io/badge/LICENSE-MIT-white?style=for-the-badge&labelColor=06080d)
+![Direction](https://img.shields.io/badge/DIRECTION-CONTEMPORARY_MINIMAL-1B44D8?style=for-the-badge&labelColor=151513)
+![Proposals](https://img.shields.io/badge/PROPOSALS-3_STANDALONE_HTML-131310?style=for-the-badge&labelColor=151513)
+![Engine](https://img.shields.io/badge/QUOTATION-3--TIER_%2B_ADDON_DETECTION-0C7A43?style=for-the-badge&labelColor=151513)
+![Dependencies](https://img.shields.io/badge/DEPENDENCIES-FONTS_ONLY-F5F5F5?style=for-the-badge&labelColor=151513)
 
 <br />
 
-**Atomic Software. Autonomous Scale. Enterprise-Grade Precision in a Fraction of Legacy Time.**
+**Small team. Atomic precision. An honest price before the first call.**
 
-[Overview & Hub](index.html) • [Design 1: Precision Grid](preview-1-precision-grid.html) • [Design 2: Kinetic Bento](preview-2-kinetic-editorial.html) • [Design 3: Cyber Architect](preview-3-cyber-architect.html)
+[Hub](index.html) · [1 · Spec Sheet](preview-1-spec-sheet.html) · [2 · Monolith](preview-2-monolith.html) · [3 · Five Questions](preview-3-five-questions.html)
 
 </div>
 
 ---
 
-## 🎯 Executive Summary & Brand Identity
+## Direction (v2 — researched rework)
 
-**MicroAxis** translates the high-impact service model of modern AI engineering agencies (like [Symph.co](https://symph.co)) into a precision-engineered brand identity infused with the visual mastery of [Godly.website](https://godly.website/).
+This revision replaces the original maximalist dark-HUD concepts with **contemporary minimalism**, grounded in 2025–26 design and pricing-UX research conducted before any code was written:
 
-### Brand Etymology: *Micro* + *Axis*
-* **Micro**: Atomic precision, microservices architecture, sub-50ms latency, zero-bloat code, micro-interactions, and high-frequency deployment cycles.
-* **Axis**: The coordinate plane ($X, Y, Z$) representing directional clarity, trajectory calibration, structural alignment, and the central pivot upon which modern business scales.
+| Research finding | What it changed |
+| :--- | :--- |
+| Type is the layout; 1–2 typefaces, hierarchy by size/weight/space | No cards, no shadows, no gradients — hairlines and whitespace do the work |
+| 2–3 colors max; the accent reserved for interactive states only | Each proposal has one accent (or none); accents never decorate |
+| Motion answers the visitor, not the scroll | No scroll-jacking, no entrance animations on sections; motion only on selection/input |
+| Estimate ranges build more trust than fake-precise numbers | Every tier shows a **band range**; the computed figure is itemised line by line |
+| 5–9 questions, easy → hard, contact gated last | Proposal 3 is built as exactly that flow; 1 and 2 keep their contact capture after the estimate |
+| Grey-on-white contrast failures are the most common accessibility defect | Body text contrast ≥ AA in all three proposals |
 
----
-
-## ✨ Godly.website Inspirations Implemented Across All 3 Designs
-
-1. **Procedural Film Grain & Tactile Depth**:
-   * Pure SVG fractal noise overlay (`mix-blend-mode: screen; opacity: 0.045`) eliminating flat sterile backgrounds with cinematic grit.
-2. **Dynamic Mouse Spotlight Borders (`--mouse-x`, `--mouse-y`)**:
-   * Cards and HUD panels reactively track cursor coordinates, casting a radial illumination across borders and surfaces.
-3. **Interactive 3D Perspective Card Tilts**:
-   * Realistic gyroscopic card inclination on mouse hover with natural spring recovery.
-4. **Smooth Numerical Rolling Counters (Fintech / Agency Grade)**:
-   * When switching tiers or toggling add-ons, prices fluidly roll and interpolate up or down.
-5. **Floating Island Glass Capsule Dock**:
-   * Persistent bottom floating dock allowing seamless preview switching, quick jumping to the quotation engine, and instant preview link sharing.
-6. **Micro-Interaction Toast Feedback System**:
-   * Non-intrusive, sleek toast popups confirming copied specifications, HUD state toggles, and quote calibrations.
+Old HUD/cyber proposals were removed in `e2ee` rework commit; see git history for v1.
 
 ---
 
-## ⚡ Core Capabilities (Symph Equivalence)
+## Brand
 
-MicroAxis offers the exact enterprise-grade capabilities of leading AI & software development agencies:
+**MicroAxis** = *micro* (atomic detail, sub-50ms care) + *axis* (directional clarity, the line a business scales around). The quote configurator is the brand made tangible: precision you can operate.
 
-| MicroAxis Vector | Equivalent Service | Technical Capabilities |
-| :--- | :--- | :--- |
-| **01. Autonomous AI Agent Swarms** | Custom AI Agents / HireAI | Multi-agent orchestration, private vector RAG pipelines (Pinecone/pgvector), deterministic guardrails, autonomous tool-calling. |
-| **02. Micro-Architected Software** | Custom Software Development | Next.js 15, TypeScript, Go/Rust microservices, distributed PostgreSQL, Redis caching, AWS/Cloudflare edge serverless. |
-| **03. Precision AI & Tech Advisory** | AI Consultancy & Transformation | System architecture audits, algorithmic feasibility studies, high-speed 14-day MVP prototypes, and data pipeline vectorization. |
+### The mark
 
----
-
-## 📐 The 3-Tier Dynamic Quotation Engine
-
-The flagship differentiator of MicroAxis is an interactive configuration engine that replaces opaque quote forms with an instant, transparent, mathematical **3-Tier Quotation Matrix**:
+The name, drawn: *micro* — one small, precisely plotted point; *axis* — the coordinate frame it sits in. The dot rests at the golden-section coordinate of both axes (≈ 0.618). Nothing else.
 
 ```
-                                 ┌───────────────────────────────────┐
-                                 │   MicroAxis Quotation Engine      │
-                                 └─────────────────┬─────────────────┘
-                                                   │
-                ┌──────────────────────────────────┼──────────────────────────────────┐
-                ▼                                  ▼                                  ▼
-      ┌──────────────────┐               ┌──────────────────┐               ┌──────────────────┐
-      │  Standard Tier   │               │   Premium Tier   │               │   Elegant Tier   │
-      │ (Core Launchpad) │               │(Accelerated Scale)│              │(Sovereign Engine)│
-      │  $16,000–$24,000 │               │  $32,000–$48,000 │               │ $65,000–$110,000+│
-      └────────┬─────────┘               └────────┬─────────┘               └────────┬─────────┘
-               │                                  │                                  │
-      • Full-stack responsive web        • All Standard inclusions          • All Premium inclusions
-      • Auth, RBAC & PostgreSQL          • Atomic Design System             • Multi-agent autonomous swarm
-      • Automated CI/CD pipeline         • AI Copilot / workflow sync       • 3D WebGL micro-interactions
-      • Core SEO & Web Vitals            • Redis caching & edge routing     • Multi-region failover (99.999%)
-      • 14-day warranty guarantee        • 30-day dedicated SRE support     • Principal Tech Lead squad + 24/7 SLA
+microaxis/
+├── index.html                        # Hub — includes logo section with local SVG/PNG downloads
+├── preview-1-spec-sheet.html         # Proposal 01 · light · document
+├── preview-2-monolith.html           # Proposal 02 · dark · monochrome · typographic
+├── preview-3-five-questions.html     # Proposal 03 · light · guided 5-step flow
+└── logo/
+    ├── microaxis-mark.svg            # Mark only (ink)
+    ├── microaxis-lockup.svg          # Mark + wordmark (ink)
+    └── microaxis-lockup-inverse.svg  # Mark + wordmark (inverse, for dark surfaces)
 ```
 
-### 🧩 Automatic Add-On Detection Matrix
-The system dynamically inspects user selections and itemizes specialized add-on modules:
-* **Autonomous Vector RAG Engine**: `+$4,800 – $5,500` (Embeddings, semantic search, hybrid reranking)
-* **SOC2 & HIPAA Hardening**: `+$4,500 – $5,200` (Penetration testing, encrypted audit logging, compliance reports)
-* **Kinetic 3D & Micro-Interactions**: `+$3,800` (Three.js canvas, WebGL fluid shaders, cursor tracking)
-* **24/7 Dedicated SRE & Incident SLA**: `+$3,500 – $4,200` (15-min emergency response, Terraform multi-region IaC)
+---
+
+## The three proposals
+
+All three are **standalone HTML files** — zero build, zero JS dependencies, Google Fonts only. They share one quotation engine and one data model; what changes is the visual language and the way the form behaves.
+
+### 01 — [Spec Sheet](preview-1-spec-sheet.html) · light · document
+Cool paper, ink, one drafting-blue accent used only for interactive states. IBM Plex Sans with Plex Mono reserved for numbers. **Interactivity:** the estimate is a specification document that writes itself — line items with dot leaders, a running subtotal, add-ons appending as rows, the recommended tier stamped on the sheet.
+
+### 02 — [Monolith](preview-2-monolith.html) · dark · monochrome · typographic
+Pure black/white/grey — **zero chromatic accent**; every selected state inverts to white. Archivo variable carries display (expanded) and body (normal) in a single family. **Interactivity:** all inputs on one page; a sticky panel holds a ~110px price numeral that re-renders live; tiers are a clickable word-stack.
+
+### 03 — [Five Questions](preview-3-five-questions.html) · light · guided flow
+White, ink, one affirmation-green reserved for progress/selected/recommended. Instrument Sans, with Instrument Serif for numerals. **Interactivity:** one question per step, auto-advance on single answers, thin progress line, contact details collected last, then a reveal screen — tier recommendation, all three tier cards with computed prices, add-ons itemised.
 
 ---
 
-## 🎨 Three Standalone Design Proposals
+## The shared quotation engine
 
-Each standalone file contains a complete, self-contained landing page with working quotation engines and bespoke interactivity styles:
+Five inputs → complexity score → tier recommendation → itemised estimate inside the tier's fixed band.
 
 ```
-MicroAxis/
-├── index.html                        # Master Design Showcase Hub & Switcher
-├── preview-1-precision-grid.html     # Design 1: Obsidian & Electric Cyan
-├── preview-2-kinetic-editorial.html  # Design 2: Cosmic Violet & Titanium Bento
-├── preview-3-cyber-architect.html    # Design 3: Carbon Titanium & Matrix Emerald HUD
-└── README.md                         # Architecture, Documentation & Guide
+ inputs: product (base) · modules (count) · launch scale (users) · timeline (×0.95–1.15) · add-ons (separable rows)
+ score = product weight + ⌈modules/3⌉ + scale index          →  ≤2 Standard · 3–6 Premium · 7+ Elegant
+ estimate = (band floor + modules × $800 × tier factor + scale × $1,500 × tier factor) × timeline + add-ons
 ```
 
-### 1. [Design 1: Precision Grid](preview-1-precision-grid.html)
-* **Aesthetic**: Obsidian dark background (`#040609`), coordinate grid lines, crosshair corners, real-time mouse coordinate HUD follower, electric cyan (`#00f0ff`) accents, and spotlight hover glow.
-* **Form & Interactivity Style**: **Multi-Step Axis Calibration Wizard** with step-by-step radar status, real-time live coordinate tickers, rolling numerical counter, and reactive 3-tier tabbed summary card.
+| Tier | Band | Timeline | Inclusions |
+| :--- | :--- | :--- | :--- |
+| **Standard** — core launchpad | $16k–24k | 3–4 wks | Full-stack responsive platform · auth, roles & PostgreSQL · automated CI/CD · core SEO & Web Vitals · 14-day warranty |
+| **Premium** — accelerated scale | $32k–48k | 6–8 wks | Everything in Standard · atomic design system · AI copilot / workflow sync · Redis caching & edge routing · 30-day dedicated SRE |
+| **Elegant** — sovereign engine | $65k–110k | 10–14 wks | Everything in Premium · multi-agent autonomous swarm · 3D WebGL micro-interactions · multi-region failover (99.999%) · principal tech lead + 24/7 SLA |
 
-### 2. [Design 2: Kinetic Bento](preview-2-kinetic-editorial.html)
-* **Aesthetic**: Silicon Valley modern editorial glassmorphism (inspired by Linear and Stripe), deep graphite, cosmic violet (`#8b5cf6`), 3D perspective card tilts, and frosted white cards.
-* **Form & Interactivity Style**: **Kinetic Interactive Sliders** (modules and concurrency volume) paired with a **Side-by-Side 3-Tier Comparative Matrix** showing dynamic prices across all 3 tiers simultaneously with smooth counter interpolation.
-
-### 3. [Design 3: Cyber Architect](preview-3-cyber-architect.html)
-* **Aesthetic**: Developer cockpit inspired by Raycast, Railway, and Bloomberg terminals. Carbon slate, matrix emerald (`#00ff9d`), amber status flags, and spotlight HUD borders.
-* **Form & Interactivity Style**: **Split-Screen Interactive Console** featuring deployment target switches, automated system tier recommendations (detecting when scope demands Elegant vs Standard), and one-click architectural JSON proposal export.
+**Add-on detection** (itemised separately in all three proposals):
+Vector RAG & semantic search `+$5,500` · SOC2 & HIPAA hardening `+$4,500` · 3D kinetics & micro-motion `+$3,800` · 24/7 dedicated SRE & SLA `+$4,200`
 
 ---
 
-## 🚀 Quick Start / How to Preview
+## Services (adapted from Symph's model)
 
-All preview files are completely standalone and require zero build tools, Node servers, or dependencies:
-
-1. Clone or navigate to the repository:
-   ```bash
-   git clone git@github.com:jevvii/microaxis.git
-   cd microaxis
-   ```
-
-2. Open any preview directly in your browser:
-   ```bash
-   # Open the master hub:
-   open index.html          # macOS
-   xdg-open index.html      # Linux
-   start index.html         # Windows
-   ```
-   Or open any individual concept:
-   * `preview-1-precision-grid.html`
-   * `preview-2-kinetic-editorial.html`
-   * `preview-3-cyber-architect.html`
+| MicroAxis practice | Equivalent |
+| :--- | :--- |
+| AI & technology advisory | AI consultancy — audits, feasibility, 14-day prototype |
+| Custom AI agents | Agent systems — private vector RAG, guardrails, orchestration |
+| Custom software | Web platforms, mobile apps, business systems (Next.js, Go, PostgreSQL) |
 
 ---
 
-## 🛠️ Technology Stack
+## Preview
 
-* **Styling**: Tailwind CSS CDN with custom typography, color tokens, and coordinate grid animations.
-* **Icons**: [Lucide Icons](https://lucide.dev)
-* **Visual Craft**: Inline procedural SVG grain textures, dynamic radial spotlight shaders, 3D perspective tilts.
-* **Interactivity Engine**: Vanilla JavaScript reactive state machine calculating tiered formulas, velocity multipliers, and add-on matrices with zero framework overhead.
-
----
-
-## 📡 Remote Repository
-
-Configured remote:
 ```bash
-git remote add origin git@github.com:jevvii/microaxis.git
+git clone git@github.com:deutzgalila/microaxis.git
+cd microaxis
+xdg-open index.html      # or double-click any preview-*.html
 ```
 
-© 2026 MicroAxis Inc. All rights reserved. Precision Software Systems.
+No server, no build. Each file works offline of any other.
+
+## Accessibility & quality floor
+
+- `prefers-reduced-motion` respected everywhere
+- Visible focus states on every interactive element
+- Real `<input>`/`<label>` semantics — keyboard operable, screen-reader friendly
+- Responsive down to mobile; the estimate region announces changes (`aria-live`)
+
+© 2026 MicroAxis. Service model adapted from Symph; design and copy are original.
