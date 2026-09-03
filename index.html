@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MicroAxis — Precision AI & Software Engineering | Design Proposals</title>
+  <meta name="description" content="MicroAxis Landing Page Design Proposals & Interactive Tiered Quotation Engine." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            axis: {
+              950: '#06080d',
+              900: '#0c1017',
+              850: '#111722',
+              800: '#182030',
+              cyan: '#00f0ff',
+              violet: '#8b5cf6',
+              emerald: '#00ff9d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #06080d;
+      color: #f1f5f9;
+    }
+    .glass-panel {
+      background: rgba(17, 23, 34, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+    .glass-panel:hover {
+      border-color: rgba(0, 240, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-axis-cyan selection:text-black">
+
+  <!-- Header -->
+  <header class="border-b border-white/10 bg-axis-950/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-axis-cyan via-axis-violet to-axis-emerald p-[1px]">
+          <div class="w-full h-full bg-axis-950 rounded-[11px] flex items-center justify-center font-display font-bold text-white text-base">
+            μA
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-xl tracking-wider text-white">MICRO<span class="text-axis-cyan">AXIS</span></span>
+          <span class="text-[10px] font-mono text-gray-400 block tracking-widest uppercase">Landing Page Proposals & Quotation Engine</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/jevvii/microaxis" target="_blank" class="text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-axis-900">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>jevvii/microaxis</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Summary -->
+  <section class="py-16 px-6 border-b border-white/5 bg-gradient-to-b from-axis-950 via-axis-900 to-axis-950">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30 text-xs font-mono text-axis-cyan mb-6">
+        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+        THREE DISTINCT ARCHITECTURAL PROPOSALS
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-display font-bold text-white tracking-tight leading-tight mb-6">
+        Precision AI & Software Engineering.<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-axis-cyan via-axis-violet to-axis-emerald">
+          Derived from the name MicroAxis.
+        </span>
+      </h1>
+      <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        Converted from Symph's proven agency service model with custom forms, bespoke interactivity styles, and an interactive <strong>three-tiered quotation system</strong> (Standard, Premium, and Elegant) with automatic add-on detection.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 Design Showcase Cards -->
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-xs font-mono text-axis-cyan tracking-widest uppercase mb-4 text-center">// SELECT A DESIGN PROPOSAL TO LAUNCH STANDALONE PREVIEW</div>
+    <h2 class="text-3xl font-bold text-white text-center mb-16">Explore the 3 Visual & Interactivity Archetypes</h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-cyan/30 bg-axis-900/60 relative group">
+        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-cyan px-2.5 py-1 rounded-full bg-axis-cyan/10 border border-axis-cyan/30">
+          PROPOSAL 01
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-axis-cyan/10 border border-axis-cyan/40 flex items-center justify-center text-axis-cyan mb-6 group-hover:scale-110 transition">
+            <i data-lucide="crosshair" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Precision Grid</h3>
+          <div class="text-xs font-mono text-axis-cyan mb-4">Obsidian, Coordinate Planes & Electric Cyan</div>
+          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+            High-tech engineering aesthetic featuring vector coordinate lines, crosshair corners, real-time telemetry HUD, and a multi-step Axis Calibration Wizard with instant tier tabs.
+          </p>
+          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Coordinate HUD & Radar Graph</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Multi-Step Calibration Wizard</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-cyan"></i> Inclusions Checklist & Addon Math</div>
+          </div>
+        </div>
+        <a href="preview-1-precision-grid.html" class="w-full py-3.5 rounded-xl bg-axis-cyan text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-cyan-300 transition shadow-lg shadow-cyan-500/20">
+          <span>Launch Precision Grid Preview</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-violet/30 bg-axis-900/60 relative group">
+        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-violet px-2.5 py-1 rounded-full bg-axis-violet/10 border border-axis-violet/30">
+          PROPOSAL 02
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-axis-violet/10 border border-axis-violet/40 flex items-center justify-center text-axis-violet mb-6 group-hover:scale-110 transition">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Kinetic Bento</h3>
+          <div class="text-xs font-mono text-axis-violet mb-4">Cosmic Violet, Deep Graphite & Frosted Glass</div>
+          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+            Silicon Valley neo-minimalist studio aesthetic inspired by Linear and Stripe. Features interactive scope sliders and a 3-tier side-by-side comparative matrix that updates live.
+          </p>
+          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Dynamic Scope & Concurrency Sliders</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Side-by-Side 3-Tier Comparative Matrix</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-violet"></i> Real-Time Addon Total Calculation</div>
+          </div>
+        </div>
+        <a href="preview-2-kinetic-editorial.html" class="w-full py-3.5 rounded-xl bg-axis-violet text-white font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-purple-600 transition shadow-lg shadow-purple-500/20">
+          <span>Launch Kinetic Bento Preview</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-axis-emerald/30 bg-axis-900/60 relative group">
+        <div class="absolute top-4 right-4 text-[10px] font-mono font-bold text-axis-emerald px-2.5 py-1 rounded-full bg-axis-emerald/10 border border-axis-emerald/30">
+          PROPOSAL 03
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-axis-emerald/10 border border-axis-emerald/40 flex items-center justify-center text-axis-emerald mb-6 group-hover:scale-110 transition">
+            <i data-lucide="terminal" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Cyber Architect</h3>
+          <div class="text-xs font-mono text-axis-emerald mb-4">Carbon Titanium & Matrix Emerald HUD</div>
+          <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+            Developer-first cockpit with a split-screen layout. Features a sticky interactive Architect Console with automated system tier recommendations and one-click specification export.
+          </p>
+          <div class="space-y-2 text-xs font-mono text-gray-400 mb-8 border-t border-white/10 pt-4">
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Split-Screen Interactive Console</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> Automated Tier Recommendation AI</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-axis-emerald"></i> One-Click Spec Export & Receipt</div>
+          </div>
+        </div>
+        <a href="preview-3-cyber-architect.html" class="w-full py-3.5 rounded-xl bg-axis-emerald text-black font-bold text-xs text-center flex items-center justify-center gap-2 hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20">
+          <span>Launch Cyber Architect Preview</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tier Logic & Addon Engine Deep Dive -->
+  <section class="py-16 px-6 max-w-5xl mx-auto border-t border-white/5">
+    <div class="glass-panel rounded-3xl p-8 sm:p-12">
+      <div class="text-xs font-mono text-axis-cyan uppercase tracking-widest mb-3">Architectural Logic Engine</div>
+      <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">How the 3-Tiered Quotation Engine Operates</h3>
+      
+      <div class="grid sm:grid-cols-3 gap-6 text-xs font-mono">
+        <div class="p-4 rounded-xl bg-axis-950 border border-white/10">
+          <div class="text-white font-bold text-sm mb-1 text-gray-300">1. STANDARD TIER</div>
+          <div class="text-axis-cyan mb-2">Core Launchpad ($16k - $24k)</div>
+          <p class="text-gray-400 leading-relaxed">
+            Essential production build. High-velocity Next.js/React stack, PostgreSQL DB, secure auth, automated CI/CD pipeline, and 14-day warranty.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-axis-950 border border-axis-cyan/40">
+          <div class="text-white font-bold text-sm mb-1 text-axis-cyan">2. PREMIUM TIER</div>
+          <div class="text-axis-cyan mb-2">Scale & Velocity ($32k - $48k)</div>
+          <p class="text-gray-400 leading-relaxed">
+            Full bespoke Atomic Design System, Redis caching, AI assistant workflows, 85%+ test coverage, and 30-day dedicated post-launch SRE warranty.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-axis-950 border border-white/10">
+          <div class="text-white font-bold text-sm mb-1 text-purple-300">3. ELEGANT TIER</div>
+          <div class="text-purple-400 mb-2">Sovereign Flagship ($65k - $110k+)</div>
+          <p class="text-gray-400 leading-relaxed">
+            White-glove multi-agent autonomous swarm, custom 3D WebGL micro-interactions, multi-region failover, penetration hardening, and dedicated 24/7 SLA.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
+        <div>
+          <span class="text-axis-cyan font-bold">Addons Identified:</span> Vector RAG ($5.5k), SOC2 Hardening ($4.5k), 3D Kinetics ($3.8k), 24/7 SRE ($4.2k)
+        </div>
+        <div class="text-gray-500">
+          Git: <code class="text-white">git@github.com:jevvii/microaxis.git</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-white/10 bg-axis-950 text-center text-xs font-mono text-gray-500">
+    MicroAxis Inc. // Autonomous Systems & Software Architecture © 2026
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
