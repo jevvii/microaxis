@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MicroAxis — Five Questions (Proposal 3 of 3)</title>
+<meta name="description" content="MicroAxis minimal landing page proposal: a five-question guided flow that ends in a tiered estimate — Standard, Premium or Elegant — with automatic add-on detection." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #131310;
+    --ink-2: #3C3C37;
+    --ink-3: #75756C;
+    --line: #E8E8E2;
+    --line-2: #D4D4CB;
+    --wash: #F7F7F3;
+    --go: #0C7A43;          /* affirmation green — selected states, progress, primary CTA, recommended */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 1rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--go); outline-offset: 2px; }
+  ::selection { background: var(--go); color: #fff; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+
+  .wrap { max-width: 68rem; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+  .narrow { max-width: 40rem; margin-inline: auto; }
+
+  /* switcher */
+  .switch { border-bottom: 1px solid var(--line); font-size: 0.75rem; color: var(--ink-3); }
+  .switch .wrap { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.55rem; }
+  .switch nav { display: flex; gap: 1.25rem; }
+  .switch a { text-decoration: none; color: var(--ink-3); }
+  .switch a[aria-current] { color: var(--ink); border-bottom: 1px solid var(--ink); }
+  .switch a:hover { color: var(--go); }
+
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 1.3rem; gap: 1rem; flex-wrap: wrap; }
+  .wordmark { font-weight: 700; font-size: 1.05rem; text-decoration: none; letter-spacing: -0.01em; }
+  .wordmark .dot { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--go); margin-right: 0.45rem; transform: translateY(-0.05rem); }
+  nav.main { display: flex; gap: 1.75rem; font-size: 0.92rem; }
+  nav.main a { text-decoration: none; color: var(--ink-2); }
+  nav.main a:hover { color: var(--go); }
+
+  section { padding-block: clamp(4.5rem, 9vw, 7.5rem); border-bottom: 1px solid var(--line); }
+  h1 { font-size: clamp(2.5rem, 5.5vw, 4.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; max-width: 16ch; text-wrap: balance; }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; }
+  .lede { color: var(--ink-2); font-size: clamp(1.02rem, 1.4vw, 1.18rem); max-width: 54ch; }
+  .kicker { font-size: 0.8rem; font-weight: 600; color: var(--ink-3); margin-bottom: 1rem; letter-spacing: 0.01em; }
+
+  .btn {
+    appearance: none; font: inherit; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+    background: var(--ink); color: #fff; border: 1px solid var(--ink);
+    padding: 0.85rem 1.7rem; border-radius: 999px; text-decoration: none; display: inline-block;
+    transition: background 130ms ease, border-color 130ms ease;
+  }
+  .btn:hover { background: var(--go); border-color: var(--go); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+  .btn.ghost:hover { border-color: var(--ink); background: transparent; }
+  .btn.go { background: var(--go); border-color: var(--go); }
+  .btn.go:hover { filter: brightness(0.92); }
+
+  /* hero */
+  .hero .lede { margin-top: 1.6rem; }
+  .hero .actions { margin-top: 2.4rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+  .hero .meta { margin-top: 4.5rem; display: flex; gap: clamp(2rem, 6vw, 4.5rem); flex-wrap: wrap; }
+  .hero .meta div b { display: block; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .hero .meta div span { font-size: 0.82rem; color: var(--ink-3); }
+
+  /* services */
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); margin-top: 3rem; }
+  .svc-grid h3 { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.015em; padding-top: 1rem; border-top: 2px solid var(--ink); }
+  .svc-grid p { color: var(--ink-2); font-size: 0.92rem; margin-top: 0.7rem; }
+  @media (max-width: 46rem) { .svc-grid { grid-template-columns: 1fr; } }
+
+  /* work */
+  .work { margin-top: 3rem; }
+  .work .w { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.15rem; border-bottom: 1px solid var(--line); }
+  .work .w:first-child { border-top: 1px solid var(--line); }
+  .work .w b { font-weight: 650; }
+  .work .w span { color: var(--ink-3); font-size: 0.88rem; margin-left: 0.75rem; font-weight: 400; }
+  .work .w em { font-style: normal; font-weight: 700; white-space: nowrap; }
+  @media (max-width: 40rem) { .work .w span { display: none; } }
+
+  blockquote { margin-top: 3rem; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.3; max-width: 30ch; }
+  blockquote footer { font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; color: var(--ink-3); margin-top: 1.1rem; }
+
+  /* ================= THE FLOW ================= */
+  .flow-shell { max-width: 42rem; margin: 3rem auto 0; }
+  .progress { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.4rem; }
+  .progress .bar { flex: 1; height: 2px; background: var(--line); border-radius: 999px; overflow: hidden; }
+  .progress .bar i { display: block; height: 100%; width: 0; background: var(--go); border-radius: 999px; transition: width 350ms ease; }
+  .progress .step-label { font-size: 0.8rem; color: var(--ink-3); white-space: nowrap; }
+
+  .step { display: none; }
+  .step.active { display: block; animation: instep 300ms ease; }
+  @keyframes instep { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .step h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  .step .sub { color: var(--ink-3); font-size: 0.92rem; margin-bottom: 1.8rem; }
+
+  .opts { display: grid; gap: 0.7rem; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .opt label {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    border: 1px solid var(--line-2); border-radius: 14px; padding: 1rem 1.25rem; cursor: pointer;
+    font-size: 0.98rem; font-weight: 550; transition: border-color 130ms ease, background 130ms ease;
+  }
+  .opt label:hover { border-color: var(--ink); }
+  .opt label small { font-weight: 400; color: var(--ink-3); display: block; font-size: 0.8rem; margin-top: 0.1rem; }
+  .opt label .check {
+    flex: none; width: 1.25rem; height: 1.25rem; border-radius: 50%; border: 1.5px solid var(--line-2);
+    display: inline-flex; align-items: center; justify-content: center; transition: all 130ms ease;
+  }
+  .opt label .check svg { width: 0.7rem; height: 0.7rem; opacity: 0; }
+  .opt input:checked + label { border-color: var(--go); background: #F4FAF6; }
+  .opt input:checked + label .check { background: var(--go); border-color: var(--go); }
+  .opt input:checked + label .check svg { opacity: 1; }
+  .opt input:focus-visible + label { outline: 2px solid var(--go); outline-offset: 2px; }
+
+  .opts.two { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 34rem) { .opts.two { grid-template-columns: 1fr; } }
+
+  .flow-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; }
+  .flow-nav .back {
+    background: none; border: none; font: inherit; font-size: 0.9rem; color: var(--ink-3); cursor: pointer; padding: 0.4rem 0;
+    text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2);
+  }
+  .flow-nav .back:hover { color: var(--ink); }
+  .flow-nav .back[disabled] { visibility: hidden; }
+  .flow-nav .next-hint { font-size: 0.78rem; color: var(--ink-3); }
+
+  /* addons step */
+  .addon-card label { font-weight: 550; }
+  .addon-card .price-l { color: var(--ink-3); font-weight: 600; font-size: 0.85rem; }
+  .addon-card input:checked + label .price-l,
+  .addon-card input:checked + label { color: var(--ink); }
+
+  /* details step */
+  .field-grid { display: grid; gap: 1rem; }
+  .field-grid label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .field-grid input {
+    width: 100%; font: inherit; font-size: 0.95rem; padding: 0.8rem 1rem;
+    border: 1px solid var(--line-2); border-radius: 12px; background: var(--bg); color: var(--ink);
+  }
+  .field-grid input::placeholder { color: var(--ink-3); font-weight: 400; }
+  .field-grid input:focus { outline: 2px solid var(--go); outline-offset: -1px; border-color: var(--go); }
+  .field-grid .err { font-size: 0.78rem; color: #B3261E; margin-top: 0.3rem; display: none; }
+  .field-grid.invalid .err { display: block; }
+
+  /* reveal */
+  .reveal { text-align: left; }
+  .reveal .r-label { font-size: 0.8rem; font-weight: 600; color: var(--ink-3); }
+  .reveal .r-price { font-family: 'Instrument Serif', serif; font-size: clamp(3.4rem, 9vw, 5.5rem); line-height: 1; letter-spacing: -0.01em; margin-top: 0.6rem; }
+  .reveal .r-band { color: var(--ink-2); margin-top: 0.8rem; font-size: 0.95rem; }
+  .reveal .r-band b { color: var(--ink); }
+
+  .reveal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 2.2rem; }
+  @media (max-width: 46rem) { .reveal-cards { grid-template-columns: 1fr; } }
+  .t-card { border: 1px solid var(--line-2); border-radius: 16px; padding: 1.2rem 1.2rem 1.3rem; font-size: 0.85rem; }
+  .t-card .t-name { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 1rem; }
+  .t-card .t-band { color: var(--ink-3); font-size: 0.8rem; margin-top: 0.15rem; }
+  .t-card .t-est { font-family: 'Instrument Serif', serif; font-size: 1.7rem; margin-top: 0.9rem; }
+  .t-card ul { margin-top: 0.9rem; list-style: none; color: var(--ink-2); }
+  .t-card li { padding-block: 0.22rem; padding-left: 1.05rem; position: relative; font-size: 0.82rem; }
+  .t-card li::before { content: "✓"; position: absolute; left: 0; color: var(--line-2); font-size: 0.75rem; }
+  .t-card.rec { border-color: var(--go); border-width: 1.5px; background: #F4FAF6; }
+  .t-card.rec .t-name::after { content: "recommended"; font-size: 0.65rem; font-weight: 650; color: #fff; background: var(--go); border-radius: 999px; padding: 0.18rem 0.55rem; }
+  .t-card.rec li::before { color: var(--go); }
+
+  .reveal .addons-sum { margin-top: 1.6rem; border: 1px dashed var(--line-2); border-radius: 12px; padding: 0.9rem 1.2rem; font-size: 0.85rem; color: var(--ink-2); }
+  .reveal .actions { margin-top: 2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .reveal .confirm { margin-top: 1.2rem; font-size: 0.9rem; color: var(--go); font-weight: 600; display: none; }
+</style>
+</head>
+<body>
+
+<div class="switch">
+  <div class="wrap">
+    <span>MicroAxis proposals — 3 of 3, <b style="color:var(--ink)">Five&nbsp;Questions</b></span>
+    <nav>
+      <a href="preview-1-spec-sheet.html">1 Spec Sheet</a>
+      <a href="preview-2-monolith.html">2 Monolith</a>
+      <a href="preview-3-five-questions.html" aria-current="true">3 Five Questions</a>
+      <a href="index.html">Hub</a>
+    </nav>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#top"><span class="dot" aria-hidden="true"></span>MicroAxis</a>
+    <nav class="main">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#work">Work</a>
+      <a href="#estimate">Five questions</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Five questions. One honest estimate.</h1>
+      <p class="lede">MicroAxis is a small studio building AI agents, web platforms, and mobile systems. Answer five questions and get a real, tiered price — no email until the very end, no sales call required.</p>
+      <div class="actions">
+        <a class="btn go" href="#estimate">Start the five questions</a>
+        <a class="btn ghost" href="#work">See what we've shipped</a>
+      </div>
+      <div class="meta">
+        <div><b class="serif">14</b><span>days, contract to launch (Milksha)</span></div>
+        <div><b class="serif">1M+</b><span>passengers served monthly (OceanJet)</span></div>
+        <div><b class="serif">99.99%</b><span>uptime across government systems</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="wrap">
+      <p class="kicker">Capabilities</p>
+      <h2>What a small, senior team can do for you.</h2>
+      <div class="svc-grid">
+        <div>
+          <h3>AI &amp; technology advisory</h3>
+          <p>Architecture audits, feasibility studies, and a working prototype within fourteen days.</p>
+        </div>
+        <div>
+          <h3>Custom AI agents</h3>
+          <p>Autonomous agents on your private data — retrieval pipelines, guardrails, tool-calling — in production, not in a demo.</p>
+        </div>
+        <div>
+          <h3>Custom software</h3>
+          <p>Web platforms, mobile applications, and business systems on Next.js, Go, and PostgreSQL.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <p class="kicker">Delivered work</p>
+      <h2>In production, under load.</h2>
+      <div class="work">
+        <div class="w"><div><b>Milksha</b> <span>multi-branch ordering platform</span></div><em>Live in 14 days</em></div>
+        <div class="w"><div><b>OceanJet</b> <span>ticketing &amp; fleet engine</span></div><em>1M+ passengers</em></div>
+        <div class="w"><div><b>Dept. of Budget &amp; Mgmt</b> <span>financial transparency portal</span></div><em>100M+ records</em></div>
+        <div class="w"><div><b>Flying Tigers Express</b> <span>fleet dispatch &amp; routing</span></div><em>Zero downtime</em></div>
+      </div>
+      <blockquote>
+        “They delivered exactly what we had in mind from sprint one, and made the architecture radically more efficient.”
+        <footer>Jhoana Rull, Office of the CIO, DBM</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ESTIMATE / FLOW -->
+  <section id="estimate">
+    <div class="wrap">
+      <p class="kicker">Estimate</p>
+      <h2>Answer five questions.<br>Get a tiered price.</h2>
+
+      <div class="flow-shell">
+        <div class="progress" aria-hidden="true">
+          <span class="step-label" id="step-label">1 of 5</span>
+          <div class="bar"><i id="progress-fill"></i></div>
+        </div>
+
+        <form autocomplete="off" onsubmit="return false">
+          <!-- Q1 -->
+          <div class="step active" data-step="1">
+            <h3>What are you building?</h3>
+            <p class="sub">This sets the base of your estimate.</p>
+            <div class="opts" id="q-product"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="step" data-step="2">
+            <h3>How big is the first version?</h3>
+            <p class="sub">Core modules like auth, dashboard, billing, admin — each counts as one.</p>
+            <div class="opts" id="q-scope"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="step" data-step="3">
+            <h3>Who shows up on day one?</h3>
+            <p class="sub">Expected concurrent users at launch.</p>
+            <div class="opts two" id="q-scale"></div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="step" data-step="4">
+            <h3>Any specialised modules?</h3>
+            <p class="sub">Optional — each is itemised separately in your estimate.</p>
+            <div class="opts" id="q-addons"></div>
+            <div class="flow-nav">
+              <button type="button" class="back" data-goto="3">Back</button>
+              <button type="button" class="btn" data-goto="5">Continue</button>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="step" data-step="5">
+            <h3>Where do we send the full specification?</h3>
+            <p class="sub">Last step — your estimate unlocks right after.</p>
+            <div class="field-grid" id="q-details">
+              <div>
+                <label for="q-name">Your name</label>
+                <input type="text" id="q-name" placeholder="Ada Reyes">
+              </div>
+              <div>
+                <label for="q-email">Work email</label>
+                <input type="email" id="q-email" placeholder="ada@company.com">
+              </div>
+              <p class="err" id="details-err">Please add your name and a valid work email.</p>
+            </div>
+            <div class="flow-nav">
+              <button type="button" class="back" data-goto="4">Back</button>
+              <button type="button" class="btn go" id="btn-reveal">Show my estimate</button>
+            </div>
+          </div>
+
+          <!-- REVEAL -->
+          <div class="step reveal" data-step="6">
+            <div class="r-label">YOUR ESTIMATE — <span id="r-tier-word">PREMIUM TIER</span></div>
+            <div class="r-price" id="r-price">$0</div>
+            <p class="r-band">Computed inside the <b id="r-band-label">Premium</b> band (<b id="r-band">$32k–48k</b>) · delivery in <b id="r-weeks">6–8 weeks</b>. Final scope is confirmed on a 30-minute call — this number is our starting honesty, not a teaser.</p>
+
+            <div class="reveal-cards" id="r-cards"></div>
+
+            <div class="addons-sum" id="r-addons"></div>
+
+            <div class="actions">
+              <button type="button" class="btn go" id="btn-book">Book the 30-minute call</button>
+              <button type="button" class="btn ghost" id="btn-restart">Start over</button>
+            </div>
+            <p class="confirm" id="r-confirm">Booked — we'll confirm a slot with you within 24 hours.</p>
+          </div>
+        </form>
+
+        <div class="flow-nav" id="generic-nav">
+          <button type="button" class="back" id="nav-back" disabled>Back</button>
+          <span class="next-hint" id="nav-hint">Select an option to continue</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="padding-block:2.6rem">
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;font-size:0.8rem;color:var(--ink-3)">
+    <span>© 2026 MicroAxis</span>
+    <nav style="display:flex;gap:1.5rem">
+      <a href="preview-1-spec-sheet.html" style="text-decoration:none">Spec Sheet</a>
+      <a href="preview-2-monolith.html" style="text-decoration:none">Monolith</a>
+      <a href="index.html" style="text-decoration:none">All proposals</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   MicroAxis shared quotation engine — Five Questions presentation
+   ============================================================ */
+const PRODUCTS = [
+  { id: 'web',    name: 'A web platform',       base: 16000, weight: 0, sub: 'Portals, dashboards, commerce' },
+  { id: 'mobile', name: 'A mobile app',         base: 18000, weight: 1, sub: 'iOS & Android, one codebase' },
+  { id: 'agents', name: 'An AI agent system',   base: 24000, weight: 2, sub: 'Autonomous workflows & copilots' },
+  { id: 'saas',   name: 'Enterprise SaaS',      base: 28000, weight: 3, sub: 'Multi-tenant, at scale' },
+];
+const SCOPES = [
+  { label: 'MVP',        modules: 2, sub: '1–3 core modules',      modulesN: '2 modules' },
+  { label: 'Growth',     modules: 5, sub: '4–7 modules',           modulesN: '5 modules' },
+  { label: 'Full build', modules: 9, sub: '8–10+ modules',         modulesN: '9 modules' },
+];
+const SCALE = [
+  { label: 'Up to 1k',  idx: 0 }, { label: 'Around 10k', idx: 1 },
+  { label: '100k+',     idx: 2 }, { label: 'Millions',   idx: 3 },
+];
+const ADDONS = [
+  { id: 'rag',  name: 'Vector RAG & semantic search', price: 5500 },
+  { id: 'soc2', name: 'SOC2 & HIPAA hardening',       price: 4500 },
+  { id: '3d',   name: '3D kinetics & micro-motion',   price: 3800 },
+  { id: 'sre',  name: '24/7 dedicated SRE & SLA',     price: 4200 },
+];
+const TIERS = {
+  standard: { label: 'Standard', word: 'STANDARD TIER', band: [16000, 24000],  factor: 1.0, weeks: '3–4 weeks',
+    incl: ['Full-stack responsive platform','Auth, roles & PostgreSQL','Automated CI/CD','Core SEO & Web Vitals','14-day launch warranty'] },
+  premium:  { label: 'Premium',  word: 'PREMIUM TIER',  band: [32000, 48000],  factor: 1.6, weeks: '6–8 weeks',
+    incl: ['Everything in Standard','Atomic design system','AI copilot / workflow sync','Redis caching & edge routing','30-day dedicated SRE'] },
+  elegant:  { label: 'Elegant',  word: 'ELEGANT TIER',  band: [65000, 110000], factor: 2.6, weeks: '10–14 weeks',
+    incl: ['Everything in Premium','Multi-agent autonomous swarm','3D WebGL micro-interactions','Multi-region failover · 99.999%','Principal tech lead + 24/7 SLA'] },
+};
+const TIER_ORDER = ['standard', 'premium', 'elegant'];
+const money = n => '$' + n.toLocaleString('en-US');
+const bandFmt = b => '$' + (b[0]/1000) + 'k–' + (b[1]/1000) + 'k';
+const round50 = n => Math.round(n / 50) * 50;
+
+const state = { product: null, scope: null, scale: null, addons: new Set() };
+
+function compute() {
+  const p = PRODUCTS.find(x => x.id === state.product);
+  const modules = SCOPES[state.scope].modules;
+  const score = p.weight + Math.ceil(modules / 3) + state.scale;
+  const rec = score <= 2 ? 'standard' : score <= 6 ? 'premium' : 'elegant';
+  const addonSum = ADDONS.filter(a => state.addons.has(a.id)).reduce((s, a) => s + a.price, 0);
+  const perTier = {};
+  for (const k of TIER_ORDER) {
+    const t = TIERS[k];
+    const base = t.band[0] + (modules - 1) * 800 * t.factor + state.scale * 1500 * t.factor;
+    perTier[k] = Math.max(base, t.band[0]) + addonSum;   // exact line-item sum
+  }
+  return { p, modules, rec, addonSum, perTier };
+}
+
+/* ---------- flow ---------- */
+const CHECK_SVG = '<svg viewBox="0 0 12 10" fill="none"><path d="M1 5.2 4.4 8.6 11 1.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+let step = 1;
+const TOTAL_Q = 5;
+
+function showStep(n) {
+  step = n;
+  document.querySelectorAll('.step').forEach(s => s.classList.toggle('active', +s.dataset.step === n));
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('step-label');
+  const genNav = document.getElementById('generic-nav');
+
+  if (n >= 6) {                       // reveal
+    fill.style.width = '100%';
+    label.textContent = 'Your estimate';
+    genNav.style.display = 'none';
+    document.getElementById('estimate').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  fill.style.width = ((n - 1) / TOTAL_Q * 100) + '%';
+  label.textContent = n + ' of ' + TOTAL_Q;
+  genNav.style.display = '';
+  const back = document.getElementById('nav-back');
+  back.disabled = n === 1 || n === 4 || n === 5;   // steps 4–5 render their own nav
+  document.getElementById('nav-hint').textContent =
+    n <= 3 ? 'Select an option to continue' : '';
+}
+
+document.querySelectorAll('[data-goto]').forEach(b =>
+  b.addEventListener('click', () => showStep(+b.dataset.goto)));
+document.getElementById('nav-back').addEventListener('click', () => showStep(Math.max(1, step - 1)));
+
+function makeOptions(hostId, items, name, onPick) {
+  const host = document.getElementById(hostId);
+  items.forEach((it, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'opt';
+    wrap.innerHTML = `<input type="radio" name="${name}" id="${name}-${i}">
+      <label for="${name}-${i}"><span>${it.label || it.name}<small>${it.sub || ''}</small></span><span class="check">${CHECK_SVG}</span></label>`;
+    wrap.querySelector('input').addEventListener('change', () => {
+      onPick(i);
+      setTimeout(() => showStep(step + 1), 220);   // auto-advance on single-answer steps
+    });
+    host.appendChild(wrap);
+  });
+}
+
+makeOptions('q-product', PRODUCTS.map(p => ({ ...p, label: p.name })), 'product', i => state.product = PRODUCTS[i].id);
+makeOptions('q-scope', SCOPES, 'scope', i => state.scope = i);
+makeOptions('q-scale', SCALE.map(s => ({ ...s, sub: 'concurrent users' })), 'scale', i => state.scale = i);
+
+const addonHost = document.getElementById('q-addons');
+ADDONS.forEach((a, i) => {
+  const wrap = document.createElement('div');
+  wrap.className = 'opt addon-card';
+  wrap.innerHTML = `<input type="checkbox" id="addon-${i}">
+    <label for="addon-${i}"><span>${a.name}<small>specialised add-on</small></span><span class="price-l">+${money(a.price)}</span></label>`;
+  wrap.querySelector('input').addEventListener('change', e => {
+    e.target.checked ? state.addons.add(a.id) : state.addons.delete(a.id);
+  });
+  addonHost.appendChild(wrap);
+});
+
+document.getElementById('btn-reveal').addEventListener('click', () => {
+  const name = document.getElementById('q-name').value.trim();
+  const email = document.getElementById('q-email').value.trim();
+  const grid = document.getElementById('q-details');
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    grid.classList.add('invalid');
+    document.getElementById('details-err').style.display = 'block';
+    return;
+  }
+  grid.classList.remove('invalid');
+  buildReveal(name);
+});
+
+function buildReveal(name) {
+  const r = compute();
+  const t = TIERS[r.rec];
+  document.getElementById('r-tier-word').textContent = t.word;
+  document.getElementById('r-price').textContent = money(r.perTier[r.rec]);
+  document.getElementById('r-band-label').textContent = t.label;
+  document.getElementById('r-band').textContent = bandFmt(t.band);
+  document.getElementById('r-weeks').textContent = t.weeks;
+
+  const cards = document.getElementById('r-cards');
+  cards.innerHTML = '';
+  TIER_ORDER.forEach(k => {
+    const tk = TIERS[k];
+    const card = document.createElement('div');
+    card.className = 't-card' + (k === r.rec ? ' rec' : '');
+    card.innerHTML = `<div class="t-name"><span>${tk.label}</span></div>
+      <div class="t-band">${bandFmt(tk.band)} · ${tk.weeks}</div>
+      <div class="t-est">${money(r.perTier[k])}</div>
+      <ul>${tk.incl.map(x => `<li>${x}</li>`).join('')}</ul>`;
+    cards.appendChild(card);
+  });
+
+  const chosen = ADDONS.filter(a => state.addons.has(a.id));
+  document.getElementById('r-addons').innerHTML = chosen.length
+    ? `Detected add-ons included above: ${chosen.map(a => `${a.name} <b>+${money(a.price)}</b>`).join(' · ')} — total <b>+${money(r.addonSum)}</b>.`
+    : 'No specialised add-ons detected. You can add them later without changing the tier.';
+
+  showStep(6);
+}
+
+document.getElementById('btn-book').addEventListener('click', () => {
+  document.getElementById('r-confirm').style.display = 'block';
+  document.getElementById('btn-book').textContent = 'Call requested';
+});
+document.getElementById('btn-restart').addEventListener('click', () => {
+  state.product = null; state.scope = null; state.scale = null; state.addons.clear();
+  document.querySelectorAll('#estimate input[type=radio], #estimate input[type=checkbox]').forEach(i => i.checked = false);
+  document.getElementById('q-name').value = '';
+  document.getElementById('q-email').value = '';
+  document.getElementById('r-confirm').style.display = 'none';
+  document.getElementById('btn-book').textContent = 'Book the 30-minute call';
+  showStep(1);
+});
+
+showStep(1);
+</script>
+</body>
+</html>
